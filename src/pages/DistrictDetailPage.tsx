@@ -38,7 +38,7 @@ export function DistrictDetailPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-sand-50 via-white to-primary-50">
       {/* Hero */}
       <div className="relative h-72 md:h-96 overflow-hidden">
         <img
@@ -61,13 +61,13 @@ export function DistrictDetailPage() {
                   {district.province} Province
                 </span>
               </div>
-              <h1 className="text-4xl md:text-5xl font-display font-bold text-white">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white">
                 {district.name}
               </h1>
               <p className="text-white/80 mt-2 max-w-xl">{district.description}</p>
             </div>
             <div className="hidden sm:block text-right">
-              <p className="text-3xl font-bold text-accent-400">{district.destinationCount}</p>
+              <p className="text-3xl font-bold text-accent-400">{filtered.length}</p>
               <p className="text-white/70 text-sm">destinations</p>
             </div>
           </div>

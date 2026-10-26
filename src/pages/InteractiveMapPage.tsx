@@ -1,5 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
+import { MapContainer, TileLayer, CircleMarker, Tooltip, useMap } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 import {
   Compass, Navigation, MapPin, Layers, Filter, Search,
   X, ChevronRight, Heart, ExternalLink, Route as RouteIcon
@@ -15,10 +17,24 @@ import type { Destination, Category } from '@/types';
 import { Rating } from '@/components/ui/Rating';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
+import { DestinationPhoto } from '@/components/destination/DestinationPhoto';
+
+function MapViewportController({ destination }: { destination: Destination | null }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (destination) {
+      map.flyTo([destination.coordinates.lat, destination.coordinates.lng], 11, {
+        duration: 0.8,
+      });
+    }
+  }, [destination, map]);
+
+  return null;
+}
 
 export function InteractiveMapPage() {
   const [searchParams] = useSearchParams();
-  const mapContainerRef = useRef<HTMLDivElement>(null);
   const { userLocation, isFavorite, addFavorite, removeFavorite } = useAppStore();
   const { requestLocation, isPermissionDenied } = useGeolocation();
 
@@ -67,7 +83,7 @@ export function InteractiveMapPage() {
       : null;
 
   return (
-    <div className="relative w-full h-[calc(100vh-4rem)] flex flex-col overflow-hidden bg-slate-100">
+    <div className="relative flex h-[calc(100dvh-4rem)] w-full flex-col overflow-hidden bg-slate-100">
       {/* Top Floating Bar: Search & Category Chips */}
       <div className="absolute top-4 left-4 right-4 z-20 flex flex-col sm:flex-row gap-2 pointer-events-none">
         {/* Search */}
@@ -108,89 +124,56 @@ export function InteractiveMapPage() {
         </div>
       </div>
 
-      {/* Main Map Viewport (Interactive CSS Map Engine with dynamic markers) */}
-      <div
-        ref={mapContainerRef}
-        className="relative w-full h-full bg-[#e5e3df] overflow-hidden flex items-center justify-center select-none"
-      >
-        {/* Stylized Sri Lanka Map Vector/Grid Background */}
-        <div className="absolute inset-0 bg-[radial-gradient(#c8d6e5_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
+      {/* Real OpenStreetMap viewport with destination coordinates */}
+      <div className="relative w-full h-full overflow-hidden">
+        <MapContainer
+          center={[SRI_LANKA_CENTER.lat, SRI_LANKA_CENTER.lng]}
+          zoom={DEFAULT_MAP_ZOOM}
+          minZoom={6}
+          className="h-full w-full z-0"
+          scrollWheelZoom
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <MapViewportController destination={selectedDestination} />
 
-        {/* Center Canvas with Visual Island Representation */}
-        <div className="relative w-[340px] h-[580px] sm:w-[460px] sm:h-[760px] max-h-[90%] transition-transform">
-          {/* Island SVG Silhouette Outline */}
-          <svg
-            viewBox="0 0 100 160"
-            className="w-full h-full drop-shadow-2xl fill-[#d9ebd4] stroke-[#9ec894] stroke-[1.5]"
-          >
-            <path d="M 45 8 C 50 12, 58 15, 62 25 C 65 35, 75 55, 78 75 C 80 95, 72 120, 65 140 C 58 155, 45 158, 38 150 C 30 140, 22 125, 20 105 C 18 85, 25 65, 30 45 C 34 30, 40 10, 45 8 Z" />
-          </svg>
-
-          {/* User Location Marker */}
           {userLocation && (
-            <div
-              className="absolute z-30 -translate-x-1/2 -translate-y-1/2 cursor-pointer flex flex-col items-center"
-              style={{
-                // Approximate coordinate mapping to canvas
-                left: `${((userLocation.lng - 79.5) / 2.5) * 100}%`,
-                top: `${((9.8 - userLocation.lat) / 4.0) * 100}%`,
-              }}
+            <CircleMarker
+              center={[userLocation.lat, userLocation.lng]}
+              radius={9}
+              pathOptions={{ color: '#ffffff', weight: 3, fillColor: '#2563eb', fillOpacity: 1 }}
             >
-              <div className="relative flex items-center justify-center">
-                <span className="animate-ping absolute inline-flex h-6 w-6 rounded-full bg-blue-400 opacity-75" />
-                <div className="w-4 h-4 bg-blue-600 border-2 border-white rounded-full shadow-md z-10" />
-              </div>
-              <span className="text-[10px] font-bold bg-white/90 text-blue-800 px-1.5 py-0.5 rounded shadow mt-1">
+              <Tooltip permanent direction="top" offset={[0, -8]} className="font-semibold text-blue-700">
                 You are here
-              </span>
-            </div>
+              </Tooltip>
+            </CircleMarker>
           )}
 
-          {/* Destination Markers */}
           {filteredDestinations.map((dest) => {
-            // Coordinate mapping to SVG viewbox range:
-            // Lng: ~79.5 to 81.9 (delta ~2.4)
-            // Lat: ~5.9 to 9.8 (delta ~3.9)
-            const leftPercent = Math.max(10, Math.min(90, ((dest.coordinates.lng - 79.5) / 2.4) * 100));
-            const topPercent = Math.max(10, Math.min(90, ((9.8 - dest.coordinates.lat) / 3.9) * 100));
             const isSelected = selectedDestination?.id === dest.id;
-
             return (
-              <div
+              <CircleMarker
                 key={dest.id}
-                onClick={() => setSelectedDestination(dest)}
-                className="absolute z-20 -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-transform hover:scale-125"
-                style={{
-                  left: `${leftPercent}%`,
-                  top: `${topPercent}%`,
+                center={[dest.coordinates.lat, dest.coordinates.lng]}
+                radius={isSelected ? 10 : 6}
+                pathOptions={{
+                  color: '#ffffff',
+                  weight: isSelected ? 3 : 2,
+                  fillColor: isSelected ? '#f7941d' : dest.isHiddenGem ? '#7c3aed' : '#1b6b3a',
+                  fillOpacity: 1,
                 }}
+                eventHandlers={{ click: () => setSelectedDestination(dest) }}
               >
-                <div
-                  className={cn(
-                    'p-1.5 rounded-full shadow-lg border-2 flex items-center justify-center transition-all',
-                    isSelected
-                      ? 'bg-accent-500 border-white ring-4 ring-accent-200 scale-125'
-                      : dest.isHiddenGem
-                      ? 'bg-purple-600 border-white'
-                      : 'bg-primary-600 border-white text-white'
-                  )}
-                >
-                  <MapPin size={isSelected ? 18 : 14} className="text-white fill-current" />
-                </div>
-                <div
-                  className={cn(
-                    'absolute top-full left-1/2 -translate-x-1/2 mt-1 px-2 py-0.5 rounded-md text-[10px] font-bold whitespace-nowrap shadow-md pointer-events-none transition-opacity',
-                    isSelected
-                      ? 'bg-gray-900 text-white opacity-100 z-30'
-                      : 'bg-white/90 text-gray-800 opacity-0 group-hover:opacity-100'
-                  )}
-                >
-                  {dest.name}
-                </div>
-              </div>
+                <Tooltip direction="top" offset={[0, -6]} opacity={0.96}>
+                  <span className="font-semibold">{dest.name}</span>
+                  <span className="block text-xs text-gray-500">{dest.district}</span>
+                </Tooltip>
+              </CircleMarker>
             );
           })}
-        </div>
+        </MapContainer>
       </div>
 
       {/* Floating Action Controls on Right */}
@@ -207,14 +190,10 @@ export function InteractiveMapPage() {
 
       {/* Destination Card / Preview Bottom Sheet */}
       {selectedDestination && (
-        <div className="absolute bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:w-96 z-30 animate-slide-up">
-          <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+        <div className="absolute bottom-20 left-3 right-3 z-30 animate-slide-up sm:bottom-4 sm:left-auto sm:right-4 sm:w-96">
+          <div className="max-h-[68dvh] overflow-y-auto rounded-3xl border border-gray-100 bg-white shadow-2xl">
             <div className="relative h-40">
-              <img
-                src={selectedDestination.coverImage}
-                alt={selectedDestination.name}
-                className="w-full h-full object-cover"
-              />
+              <DestinationPhoto destination={selectedDestination} className="h-full w-full" />
               <button
                 onClick={() => {
                   setSelectedDestination(null);

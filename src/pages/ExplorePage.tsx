@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Filter, SlidersHorizontal, X, ChevronDown } from 'lucide-react';
+import { SlidersHorizontal, X } from 'lucide-react';
 import { DestinationGrid } from '@/components/destination/DestinationGrid';
 import { SearchBar } from '@/components/common/SearchBar';
 import { Button } from '@/components/ui/Button';
@@ -11,8 +11,11 @@ import { DISTRICTS } from '@/data/districts';
 import { SORT_OPTIONS } from '@/lib/constants';
 import type { SearchFilters, Category, SortOption } from '@/types';
 import { cn } from '@/lib/utils';
+import { useTranslation } from '@/lib/translations';
+import toast from 'react-hot-toast';
 
 export function ExplorePage() {
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
@@ -28,7 +31,12 @@ export function ExplorePage() {
   const { data: destinations, total, totalPages } = useDestinations(filters);
 
   const updateFilter = useCallback(<K extends keyof SearchFilters>(key: K, value: SearchFilters[K]) => {
-    setFilters((prev) => ({ ...prev, [key]: value, page: 1 }));
+    setFilters((prev) => ({
+      ...prev,
+      [key]: value,
+      // Page changes should retain the requested page; changing a filter starts over.
+      page: key === 'page' ? (value as number) : 1,
+    }));
   }, []);
 
   const toggleCategory = (cat: Category) => {
@@ -44,27 +52,30 @@ export function ExplorePage() {
   const clearFilters = () => {
     setFilters({ query: '', district: '', categories: [], sort: 'popular', page: 1, limit: 12 });
     setSearchParams({});
+    toast.success('Explore filters cleared');
   };
 
   const activeFilterCount =
     (filters.categories?.length ?? 0) +
     (filters.district ? 1 : 0) +
-    (filters.rating ? 1 : 0);
+    (filters.rating ? 1 : 0) +
+    (filters.familyFriendly ? 1 : 0) +
+    (filters.openNow ? 1 : 0);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-sand-50 via-white to-primary-50">
       {/* Page header */}
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="mb-6">
-            <h1 className="text-3xl font-display font-bold text-gray-900">Explore Destinations</h1>
+            <h1 className="text-3xl font-display font-bold text-gray-900">{t('explore.title')}</h1>
             <p className="text-gray-500 mt-1">
-              {total} destinations across all 25 districts of Sri Lanka
+              {total} {t('explore.subtitle')}
             </p>
           </div>
           <SearchBar
             onSearch={(q) => updateFilter('query', q)}
-            placeholder="Search destinations, districts, categories..."
+            placeholder={t('common.searchDestinations')}
           />
         </div>
       </div>
@@ -75,7 +86,7 @@ export function ExplorePage() {
           <aside className="w-64 shrink-0 hidden lg:block">
             <div className="bg-white rounded-2xl shadow-card p-5 sticky top-24">
               <div className="flex items-center justify-between mb-5">
-                <h3 className="font-semibold text-gray-900">Filters</h3>
+                <h3 className="font-semibold text-gray-900">{t('common.filters')}</h3>
                 {activeFilterCount > 0 && (
                   <button
                     onClick={clearFilters}
@@ -167,6 +178,10 @@ export function ExplorePage() {
                   ))}
                 </div>
               </div>
+              <div className="mt-6 space-y-3 border-t border-gray-100 pt-5">
+                <label className="flex cursor-pointer items-center gap-2 text-sm text-gray-700"><input type="checkbox" checked={Boolean(filters.openNow)} onChange={(event) => updateFilter('openNow', event.target.checked)} className="rounded border-gray-300 text-primary-600 focus:ring-primary-500" /> Open now</label>
+                <label className="flex cursor-pointer items-center gap-2 text-sm text-gray-700"><input type="checkbox" checked={Boolean(filters.familyFriendly)} onChange={(event) => updateFilter('familyFriendly', event.target.checked)} className="rounded border-gray-300 text-primary-600 focus:ring-primary-500" /> Family friendly</label>
+              </div>
             </div>
           </aside>
 
@@ -179,7 +194,7 @@ export function ExplorePage() {
                 className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm font-medium text-gray-700 hover:border-gray-300 shadow-sm"
               >
                 <SlidersHorizontal size={16} />
-                Filters
+                {t('common.filters')}
                 {activeFilterCount > 0 && (
                   <span className="w-5 h-5 bg-primary-500 text-white text-xs rounded-full flex items-center justify-center">
                     {activeFilterCount}
@@ -196,6 +211,58 @@ export function ExplorePage() {
                 ))}
               </select>
             </div>
+
+            {isFilterOpen && (
+              <div className="fixed inset-0 z-[60] flex items-end bg-black/45 sm:items-center sm:justify-center lg:hidden" role="presentation" onClick={() => setIsFilterOpen(false)}>
+                <section
+                  role="dialog"
+                  aria-modal="true"
+                  aria-labelledby="mobile-filter-title"
+                  className="max-h-[82vh] w-full overflow-y-auto rounded-t-3xl bg-white p-5 pb-8 shadow-2xl sm:max-w-lg sm:rounded-3xl"
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  <div className="mb-5 flex items-center justify-between">
+                    <div>
+                      <h2 id="mobile-filter-title" className="text-lg font-semibold text-gray-900">Filters</h2>
+                      <p className="mt-0.5 text-xs text-gray-500">Choose what you want to discover</p>
+                    </div>
+                    <button onClick={() => setIsFilterOpen(false)} aria-label="Close filters" className="rounded-full p-2 text-gray-500 hover:bg-gray-100"><X size={18} /></button>
+                  </div>
+                  <div className="space-y-5">
+                    <label className="block text-xs font-semibold uppercase tracking-wide text-gray-500">District
+                      <select value={filters.district} onChange={(event) => updateFilter('district', event.target.value)} className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-3 py-3 text-sm font-normal normal-case tracking-normal text-gray-800">
+                        <option value="">All Districts</option>
+                        {DISTRICTS.map((district) => <option key={district.id} value={district.id}>{district.name}</option>)}
+                      </select>
+                    </label>
+                    <fieldset>
+                      <legend className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Categories</legend>
+                      <div className="flex flex-wrap gap-2">
+                        {CATEGORIES.slice(0, 14).map((category) => {
+                          const active = filters.categories?.includes(category.name as Category);
+                          return <button key={category.id} onClick={() => toggleCategory(category.name as Category)} className={cn('rounded-full px-3 py-2 text-xs font-medium', active ? 'bg-primary-600 text-white' : 'bg-gray-100 text-gray-700')}>{category.icon} {category.name}</button>;
+                        })}
+                      </div>
+                    </fieldset>
+                    <fieldset>
+                      <legend className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Minimum rating</legend>
+                      <div className="grid grid-cols-3 gap-2">
+                        {[4, 4.5, 4.8].map((rating) => <button key={rating} onClick={() => updateFilter('rating', filters.rating === rating ? undefined : rating)} className={cn('rounded-xl border px-3 py-2.5 text-sm font-medium', filters.rating === rating ? 'border-primary-600 bg-primary-600 text-white' : 'border-gray-200 text-gray-700')}>{rating}+ ★</button>)}
+                      </div>
+                    </fieldset>
+                    <fieldset className="space-y-3">
+                      <legend className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">More filters</legend>
+                      <label className="flex items-center gap-2 text-sm text-gray-700"><input type="checkbox" checked={Boolean(filters.openNow)} onChange={(event) => updateFilter('openNow', event.target.checked)} className="rounded border-gray-300 text-primary-600 focus:ring-primary-500" /> Open now</label>
+                      <label className="flex items-center gap-2 text-sm text-gray-700"><input type="checkbox" checked={Boolean(filters.familyFriendly)} onChange={(event) => updateFilter('familyFriendly', event.target.checked)} className="rounded border-gray-300 text-primary-600 focus:ring-primary-500" /> Family friendly</label>
+                    </fieldset>
+                  </div>
+                  <div className="mt-6 flex gap-3 border-t border-gray-100 pt-4">
+                    <Button variant="outline" className="flex-1" onClick={clearFilters}>Clear all</Button>
+                    <Button variant="primary" className="flex-1" onClick={() => setIsFilterOpen(false)}>Show {total} places</Button>
+                  </div>
+                </section>
+              </div>
+            )}
 
             {/* Active filters */}
             {(filters.categories?.length ?? 0) > 0 && (
@@ -214,8 +281,8 @@ export function ExplorePage() {
 
             {/* Result count */}
             <p className="text-sm text-gray-500 mb-5">
-              Showing <span className="font-semibold text-gray-900">{destinations.length}</span> of{' '}
-              <span className="font-semibold text-gray-900">{total}</span> destinations
+              {t('explore.showing')} <span className="font-semibold text-gray-900">{destinations.length}</span> {t('explore.of')}{' '}
+              <span className="font-semibold text-gray-900">{total}</span> {t('common.destinations')}
             </p>
 
             <DestinationGrid destinations={destinations} onClearFilters={clearFilters} />

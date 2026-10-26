@@ -4,6 +4,34 @@ import { DESTINATIONS } from '@/data/destinations';
 import { calculateDistance } from '@/lib/utils';
 import { useAppStore } from '@/store/useAppStore';
 
+const DAY_KEYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'] as const;
+
+function isOpenInSriLanka(hours: Destination['openingHours'] | undefined): boolean {
+  if (!hours) return false;
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Colombo', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+  }).formatToParts(new Date());
+  const weekday = parts.find((part) => part.type === 'weekday')?.value;
+  const hour = Number(parts.find((part) => part.type === 'hour')?.value);
+  const minute = Number(parts.find((part) => part.type === 'minute')?.value);
+  const dayIndex = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(weekday ?? '');
+  const schedule = (dayIndex >= 0 ? hours[DAY_KEYS[dayIndex]] : undefined) ?? hours.notes;
+  if (!schedule || !Number.isFinite(hour) || !Number.isFinite(minute)) return false;
+  if (/24\s*hours|open\s*24|open\s+at\s+all\s+times/i.test(schedule)) return true;
+  const matches = [...schedule.matchAll(/(\d{1,2})(?::(\d{2}))?\s*(am|pm)?\s*(?:-|–|to)\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm)?/gi)];
+  const toMinutes = (h: string, m?: string, meridiem?: string) => {
+    let value = Number(h) % 12;
+    if (meridiem?.toLowerCase() === 'pm') value += 12;
+    return value * 60 + Number(m ?? 0);
+  };
+  const now = hour * 60 + minute;
+  return matches.some((match) => {
+    const start = toMinutes(match[1], match[2], match[3]);
+    const end = toMinutes(match[4], match[5], match[6]);
+    return end >= start ? now >= start && now <= end : now >= start || now <= end;
+  });
+}
+
 export function useDestinations(filters?: SearchFilters) {
   const { userLocation } = useAppStore();
 
@@ -48,6 +76,14 @@ export function useDestinations(filters?: SearchFilters) {
     // Rating filter
     if (filters?.rating) {
       results = results.filter((d) => d.rating >= filters.rating!);
+    }
+
+    if (filters?.familyFriendly) {
+      results = results.filter((d) => d.categories.includes('Family Friendly'));
+    }
+
+    if (filters?.openNow) {
+      results = results.filter((d) => isOpenInSriLanka(d.openingHours));
     }
 
     // Add distance if user location is available

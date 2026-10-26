@@ -155,13 +155,13 @@ export function formatEntranceFee(fee?: {
  * Get province color class
  */
 export const PROVINCE_COLORS: Record<string, string> = {
-  Western: 'bg-blue-100 text-blue-800',
-  Central: 'bg-green-100 text-green-800',
-  Southern: 'bg-teal-100 text-teal-800',
-  Northern: 'bg-orange-100 text-orange-800',
-  Eastern: 'bg-cyan-100 text-cyan-800',
-  'North Western': 'bg-purple-100 text-purple-800',
-  'North Central': 'bg-yellow-100 text-yellow-800',
-  Uva: 'bg-emerald-100 text-emerald-800',
-  Sabaragamuwa: 'bg-rose-100 text-rose-800',
+  Western: 'bg-primary-100 text-primary-800',
+  Central: 'bg-ocean-100 text-ocean-800',
+  Southern: 'bg-accent-100 text-accent-800',
+  Northern: 'bg-accent-100 text-accent-800',
+  Eastern: 'bg-ocean-100 text-ocean-800',
+  'North Western': 'bg-primary-100 text-primary-800',
+  'North Central': 'bg-ocean-100 text-ocean-800',
+  Uva: 'bg-primary-100 text-primary-800',
+  Sabaragamuwa: 'bg-ocean-100 text-ocean-800',
 };

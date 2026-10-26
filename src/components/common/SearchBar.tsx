@@ -12,6 +12,7 @@ interface SearchBarProps {
   size?: 'sm' | 'md' | 'lg';
   autoFocus?: boolean;
   onSearch?: (query: string) => void;
+  onClose?: () => void;
 }
 
 export function SearchBar({
@@ -20,6 +21,7 @@ export function SearchBar({
   size = 'md',
   autoFocus,
   onSearch,
+  onClose,
 }: SearchBarProps) {
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -74,7 +76,12 @@ export function SearchBar({
   }, [query]);
 
   const handleSearch = (q: string) => {
-    if (!q.trim()) return;
+    if (!q.trim()) {
+      setIsFocused(false);
+      if (onSearch) onSearch('');
+      else navigate('/explore');
+      return;
+    }
     setLastSearchQuery(q);
     if (onSearch) {
       onSearch(q);
@@ -89,6 +96,7 @@ export function SearchBar({
     if (e.key === 'Escape') {
       setIsFocused(false);
       inputRef.current?.blur();
+      onClose?.();
     }
   };
 
@@ -98,13 +106,15 @@ export function SearchBar({
     <div className={cn('relative', className)}>
       <div
         className={cn(
-          'flex items-center gap-3 bg-white rounded-2xl border transition-all duration-200',
+          'flex items-center gap-3 rounded-2xl border bg-white/95 transition-all duration-200',
           size === 'sm' && 'px-3 py-2',
-          size === 'md' && 'px-4 py-3',
-          size === 'lg' && 'px-5 py-4',
+          size === 'md' && 'px-4 py-2.5',
+          size === 'lg' && 'gap-3 rounded-[1.35rem] p-2 pl-5',
           isFocused
-            ? 'border-primary-400 shadow-lg shadow-primary-100 ring-4 ring-primary-100'
-            : 'border-gray-200 shadow-sm hover:border-gray-300'
+            ? 'border-primary-300 shadow-[0_18px_48px_rgba(25,84,52,0.20)] ring-4 ring-primary-100/70'
+            : size === 'lg'
+              ? 'border-white/80 shadow-[0_22px_60px_rgba(15,45,29,0.22)] hover:border-primary-100'
+              : 'border-gray-200 shadow-sm hover:border-primary-200'
         )}
       >
         <Search
@@ -125,7 +135,7 @@ export function SearchBar({
             'flex-1 bg-transparent outline-none text-gray-900 placeholder:text-gray-400',
             size === 'sm' && 'text-sm',
             size === 'md' && 'text-base',
-            size === 'lg' && 'text-lg'
+            size === 'lg' && 'text-base sm:text-lg'
           )}
           aria-label="Search destinations"
           role="combobox"
@@ -144,10 +154,10 @@ export function SearchBar({
         <button
           onClick={() => handleSearch(query)}
           className={cn(
-            'shrink-0 font-medium text-white bg-primary-500 hover:bg-primary-600 rounded-xl transition-colors',
+            'shrink-0 font-semibold text-white bg-primary-700 hover:bg-primary-800 rounded-xl shadow-md shadow-primary-900/15 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0',
             size === 'sm' && 'px-3 py-1.5 text-xs',
             size === 'md' && 'px-4 py-2 text-sm',
-            size === 'lg' && 'px-6 py-2.5 text-base'
+            size === 'lg' && 'px-5 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base'
           )}
           aria-label="Search"
         >

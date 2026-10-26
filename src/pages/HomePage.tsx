@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { MapPin, Navigation, Compass, ArrowRight, Star, TrendingUp, Gem, Calendar, ChevronRight } from 'lucide-react';
+import { MapPin, Navigation, Compass, ArrowRight, Star, TrendingUp, Gem, Calendar, ChevronLeft, ChevronRight, Mountain, Waves, Trees, Sparkles } from 'lucide-react';
 import { SearchBar } from '@/components/common/SearchBar';
+import { HomeExploreMap } from '@/components/home/HomeExploreMap';
 import { DestinationCard } from '@/components/destination/DestinationCard';
+import { DestinationPhoto } from '@/components/destination/DestinationPhoto';
 import { DistrictCard } from '@/components/district/DistrictCard';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
@@ -12,16 +14,34 @@ import { CATEGORIES } from '@/data/categories';
 import { CURATED_COLLECTIONS, SEASONAL_INFO } from '@/lib/constants';
 import { useGeolocation } from '@/hooks/useGeolocation';
 import { cn } from '@/lib/utils';
+import { useTranslation } from '@/lib/translations';
 
-const HERO_IMAGES = [
-  'https://images.unsplash.com/photo-1606913084603-3e7702b01627?w=1920&q=80',
-  'https://images.unsplash.com/photo-1583087250765-8a88d5b99f6d?w=1920&q=80',
-  'https://images.unsplash.com/photo-1566296412462-c3bdfa5aa96d?w=1920&q=80',
-  'https://images.unsplash.com/photo-1611002165027-a8d17e3df3c8?w=1920&q=80',
+const HERO_SLIDES = [
+  {
+    image: 'https://images.unsplash.com/photo-1656314945066-edca54a983ec?auto=format&fit=crop&w=2400&q=88',
+    alt: 'Tea-covered hills in Sri Lanka',
+    label: 'Ella tea country',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1679754767470-d0dda4882da2?auto=format&fit=crop&w=2400&q=88',
+    alt: 'Tropical Sri Lankan beach with palms and waves',
+    label: 'South coast beaches',
+  },
+  {
+    image: 'https://ehiassets.b-cdn.net/Ehi%20Website/4DJI_0278.jpg?quality=90&width=2200',
+    alt: 'Sigiriya Rock rising over Sri Lankan jungle',
+    label: 'Ancient Sigiriya',
+  },
+  {
+    image: 'https://storage.ghost.io/c/70/8b/708b2000-5c7e-45ce-bf29-9aed2c09de58/content/images/2023/08/Untitled-design---2023-08-25T124617.071-1.png',
+    alt: 'Misty green tea estates in Sri Lanka',
+    label: 'Misty highlands',
+  },
 ];
 
 export function HomePage() {
   const [heroIndex, setHeroIndex] = useState(0);
+  const { t } = useTranslation();
   const { requestLocation, hasLocation, isPermissionDenied } = useGeolocation();
   const navigate = useNavigate();
   const featured = getFeaturedDestinations().slice(0, 6);
@@ -30,7 +50,7 @@ export function HomePage() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setHeroIndex((i) => (i + 1) % HERO_IMAGES.length);
+      setHeroIndex((i) => (i + 1) % HERO_SLIDES.length);
     }, 6000);
     return () => clearInterval(interval);
   }, []);
@@ -45,41 +65,43 @@ export function HomePage() {
         aria-label="Hero section"
       >
         {/* Background images */}
-        {HERO_IMAGES.map((img, i) => (
+        {HERO_SLIDES.map((slide, i) => (
           <div
-            key={img}
+            key={slide.image}
             className={cn(
               'absolute inset-0 transition-opacity duration-1000',
               i === heroIndex ? 'opacity-100' : 'opacity-0'
             )}
           >
             <img
-              src={img}
-              alt=""
+              src={slide.image}
+              alt={slide.alt}
               className="w-full h-full object-cover"
               loading={i === 0 ? 'eager' : 'lazy'}
+              aria-hidden={i !== heroIndex}
             />
           </div>
         ))}
 
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#163726]/55 via-[#173d2a]/12 to-[#12382e]/28" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#143b2a]/55 to-transparent" />
+        <div aria-hidden="true" className="pointer-events-none absolute -right-20 top-1/4 h-80 w-80 animate-float rounded-full bg-primary-300/10 blur-3xl" />
 
         {/* Hero content */}
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-20">
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-24 pb-24">
           <Badge variant="ghost" size="md" className="mb-6 inline-flex">
-            🇱🇰 Discover Sri Lanka
+            🇱🇰 {t('home.badge')}
           </Badge>
 
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-            Explore Sri Lanka,
+          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.95] tracking-tight mb-7 drop-shadow-[0_4px_24px_rgba(16,55,34,0.45)]">
+            {t('home.titleStart')}
             <br />
-            <span className="text-accent-400">One Journey at a Time</span>
+            <span className="text-gradient-primary">{t('home.titleAccent')}</span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-white/85 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Discover beaches, mountains, waterfalls, wildlife, culture, hidden gems and
-            unforgettable places across all 25 districts.
+          <p className="text-lg sm:text-xl text-white/85 max-w-2xl mx-auto mb-9 leading-relaxed">
+            {t('home.description')}
           </p>
 
           {/* Search bar */}
@@ -90,6 +112,22 @@ export function HomePage() {
             />
           </div>
 
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-8 text-sm">
+            {[
+              { label: 'Hill country', icon: <Mountain size={14} /> },
+              { label: 'South coast', icon: <Waves size={14} /> },
+              { label: 'Wildlife', icon: <Trees size={14} /> },
+            ].map((idea) => (
+              <button
+                key={idea.label}
+                onClick={() => navigate(`/search?q=${encodeURIComponent(idea.label)}`)}
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/15 px-3.5 py-2 text-white/90 backdrop-blur-sm transition hover:border-white/45 hover:bg-white/15 hover:text-white"
+              >
+                {idea.icon}{idea.label}
+              </button>
+            ))}
+          </div>
+
           {/* CTA buttons */}
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Button
@@ -98,39 +136,41 @@ export function HomePage() {
               onClick={() => navigate('/explore')}
               leftIcon={<Compass size={18} />}
             >
-              Explore Sri Lanka
+              {t('home.exploreSriLanka')}
             </Button>
             <Button
               size="lg"
-              variant="accent"
+              variant="outline"
+              className="border-white/50 bg-white/10 text-white hover:border-white/70 hover:bg-white/20 hover:text-white"
               onClick={() => {
                 if (!hasLocation && !isPermissionDenied) requestLocation();
                 navigate('/nearby');
               }}
               leftIcon={<Navigation size={18} />}
             >
-              Explore Near Me
+              {t('home.exploreNearMe')}
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white/10 hover:text-white"
+              className="border-white/90 bg-white/95 text-primary-900 shadow-lg hover:border-white hover:bg-white hover:text-primary-950"
               onClick={() => navigate('/trips')}
+              leftIcon={<Calendar size={18} />}
             >
-              Plan a Trip
+              {t('home.planTrip')}
             </Button>
           </div>
 
           {/* Stats */}
-          <div className="flex items-center justify-center gap-8 mt-12 text-white">
+          <div className="flex items-center justify-center gap-8 mt-10 text-white">
             {[
-              { value: '25', label: 'Districts' },
+              { value: '25', label: t('home.districts') },
               { value: '500+', label: 'Destinations' },
-              { value: '9', label: 'Provinces' },
+              { value: '9', label: t('home.provinces') },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
-                <p className="text-3xl font-bold text-accent-400">{stat.value}</p>
-                <p className="text-sm text-white/70">{stat.label}</p>
+                <p className="text-3xl font-bold text-accent-300">{stat.value}</p>
+                <p className="text-xs uppercase tracking-[0.16em] text-white/65 mt-1">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -138,33 +178,72 @@ export function HomePage() {
 
         {/* Hero image dots */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-          {HERO_IMAGES.map((_, i) => (
+          {HERO_SLIDES.map((slide, i) => (
             <button
-              key={i}
+              key={slide.image}
               onClick={() => setHeroIndex(i)}
               className={cn(
                 'h-1.5 rounded-full transition-all duration-300',
                 i === heroIndex ? 'w-8 bg-white' : 'w-1.5 bg-white/50'
               )}
-              aria-label={`Go to slide ${i + 1}`}
+              aria-label={`Show ${slide.label}`}
+              aria-current={i === heroIndex ? 'true' : undefined}
             />
           ))}
+        </div>
+
+        <div className="absolute inset-x-4 top-1/2 z-10 hidden -translate-y-1/2 justify-between sm:flex">
+          <button
+            onClick={() => setHeroIndex((i) => (i - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)}
+            className="grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-black/15 text-white/90 backdrop-blur-sm transition hover:scale-105 hover:bg-white/20 hover:text-white"
+            aria-label="Previous scenic image"
+          >
+            <ChevronLeft size={22} />
+          </button>
+          <button
+            onClick={() => setHeroIndex((i) => (i + 1) % HERO_SLIDES.length)}
+            className="grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-black/15 text-white/90 backdrop-blur-sm transition hover:scale-105 hover:bg-white/20 hover:text-white"
+            aria-label="Next scenic image"
+          >
+            <ChevronRight size={22} />
+          </button>
+        </div>
+      </section>
+
+      {/* ===== QUICK EXPLORE ===== */}
+      <section className="py-14 bg-gradient-to-br from-primary-50 via-white to-ocean-50/70">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-7 flex items-end justify-between gap-4">
+            <div>
+              <p className="mb-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary-700">A little inspiration</p>
+              <h2 className="font-display text-2xl font-bold text-gray-900 sm:text-3xl">What are you in the mood for?</h2>
+            </div>
+            <Link to="/categories" className="hidden items-center gap-1 text-sm font-semibold text-primary-700 transition hover:text-primary-900 sm:flex">All experiences <ChevronRight size={16} /></Link>
+          </div>
+          <div className="flex gap-3 overflow-x-auto pb-3 scrollbar-none sm:grid sm:grid-cols-4 sm:overflow-visible lg:grid-cols-8">
+            {topCategories.slice(0, 8).map((category, index) => (
+              <Link key={category.id} to={`/category/${category.slug}`} className="group relative flex min-w-36 shrink-0 items-center gap-3 overflow-hidden rounded-2xl border border-primary-100/80 bg-white px-3.5 py-3 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary-200 hover:shadow-card sm:min-w-0 sm:flex-col sm:items-start sm:gap-2.5 sm:p-4">
+                <span className={cn('grid h-10 w-10 shrink-0 place-items-center rounded-xl text-xl transition-transform group-hover:scale-105 sm:h-11 sm:w-11', index % 3 === 0 ? 'bg-primary-50' : index % 3 === 1 ? 'bg-ocean-50' : 'bg-sand-100')}>{category.icon}</span>
+                <span className="min-w-0"><span className="block truncate text-xs font-semibold text-gray-800 sm:whitespace-normal">{category.name}</span><span className="mt-0.5 block text-[10px] text-gray-400">Explore places</span></span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ===== FEATURED DESTINATIONS ===== */}
-      <section className="py-16 px-4 max-w-7xl mx-auto">
+      <section className="bg-gradient-to-b from-white via-primary-50/30 to-ocean-50/35 py-16 px-4 max-w-7xl mx-auto">
         <div className="flex items-end justify-between mb-8">
           <div>
             <p className="text-sm font-medium text-primary-600 uppercase tracking-wide mb-1">🌟 Featured</p>
-            <h2 className="text-3xl font-display font-bold text-gray-900">Must-Visit Places</h2>
+            <h2 className="text-3xl font-display font-bold text-gray-900">{t('home.mustVisit')}</h2>
             <p className="text-gray-500 mt-1">Handpicked destinations you shouldn't miss</p>
           </div>
           <Link
             to="/explore"
             className="hidden sm:flex items-center gap-1 text-sm font-medium text-primary-600 hover:text-primary-700"
           >
-            View All <ChevronRight size={16} />
+            {t('common.viewAll')} <ChevronRight size={16} />
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -176,36 +255,6 @@ export function HomePage() {
           <Link to="/explore">
             <Button variant="outline">View All Destinations</Button>
           </Link>
-        </div>
-      </section>
-
-      {/* ===== EXPLORE BY CATEGORY ===== */}
-      <section className="py-16 bg-sand-100">
-        <div className="px-4 max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <p className="text-sm font-medium text-primary-600 uppercase tracking-wide mb-1">Categories</p>
-            <h2 className="text-3xl font-display font-bold text-gray-900">What Are You Looking For?</h2>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {topCategories.map((cat) => (
-              <Link
-                key={cat.id}
-                to={`/category/${cat.slug}`}
-                className="group flex flex-col items-center gap-3 p-5 bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 text-center"
-              >
-                <span className="text-3xl group-hover:scale-110 transition-transform duration-200">
-                  {cat.icon}
-                </span>
-                <span className="text-sm font-semibold text-gray-800">{cat.name}</span>
-                <span className="text-xs text-gray-400">{cat.destinationCount} places</span>
-              </Link>
-            ))}
-          </div>
-          <div className="text-center mt-6">
-            <Link to="/categories">
-              <Button variant="outline">View All Categories</Button>
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -255,6 +304,8 @@ export function HomePage() {
         </div>
       </section>
 
+      <HomeExploreMap />
+
       {/* ===== TRENDING ===== */}
       <section className="py-16 bg-gradient-to-br from-primary-900 to-ocean-900">
         <div className="px-4 max-w-7xl mx-auto">
@@ -278,6 +329,45 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* ===== HIDDEN GEMS ===== */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-7 flex items-end justify-between gap-4">
+            <div>
+              <p className="mb-1 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-accent-700"><Gem size={14} /> For the curious</p>
+              <h2 className="font-display text-3xl font-bold text-gray-900">Beyond the Usual</h2>
+              <p className="mt-1 text-sm text-gray-500">Discover places most travelers haven't seen yet.</p>
+            </div>
+            <Link to="/hidden-gems" className="hidden items-center gap-1 text-sm font-semibold text-primary-700 transition hover:text-primary-900 sm:flex">All hidden gems <ChevronRight size={16} /></Link>
+          </div>
+          {hiddenGems.length > 0 && <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+            <Link to={`/destination/${hiddenGems[0].slug}`} className="group relative min-h-[360px] overflow-hidden rounded-3xl bg-primary-900 shadow-card transition hover:-translate-y-1 hover:shadow-card-hover sm:min-h-[440px]">
+              <DestinationPhoto destination={hiddenGems[0]} className="absolute inset-0 h-full w-full transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#102b20]/85 via-[#102b20]/15 to-transparent" />
+              <Badge variant="ghost" className="absolute left-5 top-5"><Gem size={13} className="mr-1.5 text-accent-200" /> Hidden gem</Badge>
+              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8">
+                <p className="mb-2 flex items-center gap-1.5 text-xs font-medium text-white/75"><MapPin size={13} /> {hiddenGems[0].district}, {hiddenGems[0].province}</p>
+                <h3 className="font-display text-2xl font-bold text-white sm:text-3xl">{hiddenGems[0].name}</h3>
+                <p className="mt-2 max-w-xl line-clamp-2 text-sm leading-relaxed text-white/75">{hiddenGems[0].shortDescription}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-white transition group-hover:gap-3">Uncover this place <ArrowRight size={16} /></span>
+              </div>
+            </Link>
+            <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+              {hiddenGems.slice(1, 4).map((destination) => (
+                <Link key={destination.id} to={`/destination/${destination.slug}`} className="group relative flex min-h-32 overflow-hidden rounded-2xl border border-primary-100 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-card sm:min-h-40 lg:min-h-0">
+                  <DestinationPhoto destination={destination} className="h-full min-h-32 w-2/5 shrink-0 transition-transform duration-500 group-hover:scale-105 sm:min-h-40 lg:min-h-full" />
+                  <div className="flex min-w-0 flex-1 flex-col justify-center bg-gradient-to-r from-white to-primary-50/60 p-3.5 sm:p-4">
+                    <span className="mb-1 flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-accent-700"><Sparkles size={11} /> Hidden gem</span>
+                    <h3 className="line-clamp-2 text-sm font-bold text-gray-900 transition group-hover:text-primary-800 sm:text-base">{destination.name}</h3>
+                    <p className="mt-1 flex items-center gap-1 truncate text-xs text-gray-500"><MapPin size={11} /> {destination.district}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>}
+        </div>
+      </section>
+
       {/* ===== CURATED COLLECTIONS ===== */}
       <section className="py-16 px-4 max-w-7xl mx-auto">
         <div className="text-center mb-10">
@@ -290,7 +380,7 @@ export function HomePage() {
             <Link
               key={col.id}
               to={`/explore?collection=${col.id}`}
-              className="group relative overflow-hidden bg-white rounded-2xl p-5 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 border border-gray-100"
+              className="group relative overflow-hidden bg-gradient-to-br from-white via-white to-primary-50/80 rounded-3xl p-5 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1.5 border border-primary-100/80 hover:border-primary-200"
             >
               <span className="text-3xl block mb-3">{col.icon}</span>
               <h3 className="text-sm font-bold text-gray-900 leading-snug">{col.title}</h3>
@@ -301,7 +391,7 @@ export function HomePage() {
       </section>
 
       {/* ===== SEASONAL ===== */}
-      <section className="py-16 bg-sand-100">
+      <section className="py-16 bg-gradient-to-br from-ocean-50/70 via-white to-sand-100">
         <div className="px-4 max-w-7xl mx-auto">
           <div className="text-center mb-10">
             <p className="text-sm font-medium text-primary-600 uppercase tracking-wide mb-1">🗓️ Seasonal</p>
@@ -309,7 +399,7 @@ export function HomePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {SEASONAL_INFO.map((season) => (
-              <div key={season.months} className="bg-white rounded-2xl p-6 shadow-card">
+              <div key={season.months} className="bg-white/90 rounded-3xl p-6 shadow-card ring-1 ring-primary-100/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-2xl">{season.icon}</span>
                   <div>
@@ -336,22 +426,26 @@ export function HomePage() {
       </section>
 
       {/* ===== CTA BANNER ===== */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <span className="text-4xl mb-4 block">🧳</span>
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
+      <section className="px-4 py-20">
+        <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] bg-gradient-to-br from-primary-900 via-primary-700 to-ocean-800 px-6 py-14 text-center shadow-2xl shadow-primary-900/20 sm:px-12">
+          <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full bg-ocean-300/20 blur-3xl" />
+          <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-accent-300/20 blur-3xl" />
+          <div className="relative">
+          <span className="mb-4 block text-4xl">🧳</span>
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
             Ready to Plan Your Sri Lanka Adventure?
           </h2>
-          <p className="text-gray-500 text-lg mb-8">
+          <p className="mb-8 text-lg text-white/75">
             Build your perfect itinerary, save your favorites, and start exploring.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Button size="xl" variant="primary" onClick={() => navigate('/trips')}>
               Start Planning
             </Button>
-            <Button size="xl" variant="outline" onClick={() => navigate('/explore')}>
+            <Button size="xl" variant="outline" className="border-white/30 bg-white/10 text-white hover:border-white/50 hover:bg-white/20 hover:text-white" onClick={() => navigate('/explore')}>
               Browse Destinations
             </Button>
+          </div>
           </div>
         </div>
       </section>

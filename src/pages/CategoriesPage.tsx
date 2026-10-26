@@ -5,7 +5,7 @@ import { ChevronRight } from 'lucide-react';
 
 export function CategoriesPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-sand-50 via-white to-primary-50 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <Badge variant="primary" size="md" className="mb-2">Discover by Theme</Badge>

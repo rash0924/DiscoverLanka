@@ -7,7 +7,7 @@ export function HiddenGemsPage() {
   const gems = DESTINATIONS.filter((d) => d.isHiddenGem);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-sand-50 via-white to-primary-50 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-10 text-center max-w-2xl mx-auto">
           <Badge variant="accent" size="md" className="gap-1 mb-3">

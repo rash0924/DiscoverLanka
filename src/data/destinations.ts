@@ -23,10 +23,10 @@ export const DESTINATIONS: Destination[] = [
     accessibility: 'Short walk on flat path from parking area',
     facilities: ['Parking', 'Food stalls nearby', 'Restrooms in Ella town'],
     images: [
-      { id: 'nab-1', url: 'https://images.unsplash.com/photo-1583087250765-8a88d5b99f6d?w=1200&q=80', caption: 'Nine Arches Bridge morning mist', order: 1 },
-      { id: 'nab-2', url: 'https://images.unsplash.com/photo-1609735043012-31c02a2a0b48?w=1200&q=80', caption: 'Train crossing the Nine Arches', order: 2 },
+      { id: 'nab-1', url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sri_Lanka_Nine_Arc.jpg?width=1200', caption: 'Nine Arches Bridge, Ella (Dilshan071, CC BY-SA 4.0)', order: 1 },
+      { id: 'nab-2', url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Nine_Arch_Bridge_in_Ella.jpg?width=1200', caption: 'Train crossing the Nine Arches Bridge (Dilshan255, CC BY-SA 4.0)', order: 2 },
     ],
-    coverImage: 'https://images.unsplash.com/photo-1583087250765-8a88d5b99f6d?w=800&q=80',
+    coverImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sri_Lanka_Nine_Arc.jpg?width=1200',
     verified: true,
     verificationStatus: 'Verified',
     isFeatured: true,
@@ -56,9 +56,9 @@ export const DESTINATIONS: Destination[] = [
     accessibility: 'Not suitable for young children or those with mobility issues',
     facilities: ['Parking in Ella town', 'Restaurants in Ella'],
     images: [
-      { id: 'er-1', url: 'https://images.unsplash.com/photo-1621608807547-4e31cec2fac3?w=1200&q=80', caption: 'View from Ella Rock summit', order: 1 },
+      { id: 'er-1', url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Ella_rock_sri_lanka.jpg?width=1200', caption: 'Ella Rock, Sri Lanka (Udara nayanajith, CC BY-SA 4.0)', order: 1 },
     ],
-    coverImage: 'https://images.unsplash.com/photo-1621608807547-4e31cec2fac3?w=800&q=80',
+    coverImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Ella_rock_sri_lanka.jpg?width=1200',
     verified: true,
     verificationStatus: 'Verified',
     isFeatured: true,
@@ -87,10 +87,10 @@ export const DESTINATIONS: Destination[] = [
     accessibility: 'Significant climbing required. Not suitable for those with vertigo or mobility issues.',
     facilities: ['Parking', 'Museum', 'Souvenir shops', 'Water available', 'Restrooms'],
     images: [
-      { id: 'sig-1', url: 'https://images.unsplash.com/photo-1606913084603-3e7702b01627?w=1200&q=80', caption: 'Sigiriya Rock from the base', order: 1 },
-      { id: 'sig-2', url: 'https://images.unsplash.com/photo-1570458436416-b8fcccfe883f?w=1200&q=80', caption: 'Aerial view of Sigiriya', order: 2 },
+      { id: 'sig-1', url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sigiriya_Rock_fortress.jpg?width=1200', caption: 'Sigiriya Rock Fortress (Chamixth, CC BY-SA 4.0)', order: 1 },
+      { id: 'sig-2', url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sigiriya_Rock%2C_Sri_Lanka.jpg?width=1200', caption: 'Sigiriya Rock, Sri Lanka (CC BY-SA 4.0)', order: 2 },
     ],
-    coverImage: 'https://images.unsplash.com/photo-1606913084603-3e7702b01627?w=800&q=80',
+    coverImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sigiriya_Rock_fortress.jpg?width=1200',
     verified: true,
     verificationStatus: 'Verified',
     isFeatured: true,
@@ -120,9 +120,9 @@ export const DESTINATIONS: Destination[] = [
     accessibility: 'Mostly flat cobblestone streets. Some uneven surfaces.',
     facilities: ['Parking outside fort walls', 'Numerous restaurants', 'Hotels inside fort', 'Restrooms'],
     images: [
-      { id: 'gf-1', url: 'https://images.unsplash.com/photo-1611002165027-a8d17e3df3c8?w=1200&q=80', caption: 'Galle Fort ramparts at sunset', order: 1 },
+      { id: 'gf-1', url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Galle_Fort_Lighthouse.jpg?width=1200', caption: 'Galle Fort Lighthouse (Rovin Shanila, CC BY-SA 4.0)', order: 1 },
     ],
-    coverImage: 'https://images.unsplash.com/photo-1611002165027-a8d17e3df3c8?w=800&q=80',
+    coverImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Galle_Fort_Lighthouse.jpg?width=1200',
     verified: true,
     verificationStatus: 'Verified',
     isFeatured: true,
@@ -151,9 +151,9 @@ export const DESTINATIONS: Destination[] = [
     accessibility: 'Wheelchair accessible. Shoes must be removed.',
     facilities: ['Parking', 'Museum', 'Gift shop', 'Restrooms'],
     images: [
-      { id: 'tot-1', url: 'https://images.unsplash.com/photo-1566296412462-c3bdfa5aa96d?w=1200&q=80', caption: 'Temple of the Tooth at dusk', order: 1 },
+      { id: 'tot-1', url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Temple_of_the_tooth.jpg?width=1200', caption: 'Temple of the Tooth, Kandy (public domain)', order: 1 },
     ],
-    coverImage: 'https://images.unsplash.com/photo-1566296412462-c3bdfa5aa96d?w=800&q=80',
+    coverImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Temple_of_the_tooth.jpg?width=1200',
     verified: true,
     verificationStatus: 'Verified',
     isFeatured: true,
@@ -183,9 +183,9 @@ export const DESTINATIONS: Destination[] = [
     accessibility: 'Jeep safari — accessible for most visitors',
     facilities: ['Jeep hire', 'Accommodation nearby', 'Guided safaris', 'Restrooms at entrance'],
     images: [
-      { id: 'yal-1', url: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=1200&q=80', caption: 'Leopard in Yala', order: 1 },
+      { id: 'yal-1', url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Leopard_in_the_Yala_National_Park.jpg?width=1200', caption: 'Leopard in Yala National Park (Manelka Jayasundara, CC BY-SA 4.0)', order: 1 },
     ],
-    coverImage: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=800&q=80',
+    coverImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Leopard_in_the_Yala_National_Park.jpg?width=1200',
     verified: true,
     verificationStatus: 'Verified',
     isFeatured: true,
@@ -246,9 +246,9 @@ export const DESTINATIONS: Destination[] = [
     accessibility: 'Very challenging — thousands of steps. Not suitable for people with knee/heart conditions.',
     facilities: ['Teashops along trail', 'Guesthouses in Dalhousie', 'Restrooms at base'],
     images: [
-      { id: 'ap-1', url: 'https://images.unsplash.com/photo-1609735043012-31c02a2a0b48?w=1200&q=80', caption: "Adam's Peak at sunrise", order: 1 },
+      { id: 'ap-1', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Shadow_of_the_peak_when_sun_rising.jpg/1280px-Shadow_of_the_peak_when_sun_rising.jpg', caption: "Adam's Peak shadow at sunrise — Sameera Madusanka, CC BY-SA 4.0", order: 1 },
     ],
-    coverImage: 'https://images.unsplash.com/photo-1609735043012-31c02a2a0b48?w=800&q=80',
+    coverImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Shadow_of_the_peak_when_sun_rising.jpg/1280px-Shadow_of_the_peak_when_sun_rising.jpg',
     verified: true,
     verificationStatus: 'Verified',
     isFeatured: true,
@@ -382,6 +382,159 @@ export const DESTINATIONS: Destination[] = [
     updatedAt: '2024-06-01T00:00:00Z',
   },
 ];
+
+type DestinationSeed = Pick<Destination, 'name' | 'slug' | 'districtId' | 'district' | 'province' | 'description' | 'shortDescription' | 'coordinates' | 'categories' | 'bestTimeToVisit' | 'estimatedDuration' | 'difficulty'>;
+
+const CATEGORY_IMAGES = {
+  beach: 'https://images.pexels.com/photos/2486168/pexels-photo-2486168.jpeg?auto=compress&cs=tinysrgb&w=1400',
+  wildlife: 'https://images.pexels.com/photos/247431/pexels-photo-247431.jpeg?auto=compress&cs=tinysrgb&w=1400',
+  waterfall: 'https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg?auto=compress&cs=tinysrgb&w=1400',
+  mountain: 'https://images.pexels.com/photos/1000445/pexels-photo-1000445.jpeg?auto=compress&cs=tinysrgb&w=1400',
+  heritage: 'https://images.pexels.com/photos/358482/pexels-photo-358482.jpeg?auto=compress&cs=tinysrgb&w=1400',
+  city: 'https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=1400',
+} as const;
+
+const imageFor = (categories: Destination['categories']) => {
+  if (categories.includes('Beaches')) return CATEGORY_IMAGES.beach;
+  if (categories.includes('Wildlife') || categories.includes('National Parks')) return CATEGORY_IMAGES.wildlife;
+  if (categories.includes('Waterfalls')) return CATEGORY_IMAGES.waterfall;
+  if (categories.includes('Mountains') || categories.includes('Hiking & Trekking') || categories.includes('Tea Estates')) return CATEGORY_IMAGES.mountain;
+  if (categories.includes('Temples') || categories.includes('Heritage Sites') || categories.includes('Cultural & Historical')) return CATEGORY_IMAGES.heritage;
+  return CATEGORY_IMAGES.city;
+};
+
+const CURATED_DESTINATION_IMAGES: Record<string, { url: string; caption: string }> = {
+  'rajanawa-ella': {
+    url: 'https://media-cdn.tripadvisor.com/media/photo-s/1c/6b/d4/e8/rajanawa-alla.jpg',
+    caption: 'Rajanawa Ella — thusharaweb, TripAdvisor (Dec 2020)',
+  },
+  'suudagala-ella': {
+    url: 'https://trips.lakdasun.org/wp/wp-content/uploads/2021/05/GOPR8291-2-1024x768.jpg',
+    caption: 'Suudagala Ella — Niroshan, Lakdasun trip report',
+  },
+  'mapalana-ella': {
+    url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mapalana_Waterfalls.jpg?width=1400',
+    caption: 'Mapalana Waterfall — Thishvish1997, CC BY-SA 4.0',
+  },
+  'bopath-ella-falls': {
+    url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bopath_Ella_Waterfall.jpg?width=1400',
+    caption: 'Bopath Ella waterfall — C. Tennakoon, CC BY-SA 4.0',
+  },
+  'ratnapura-national-museum': {
+    url: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/a7/e5/69/national-museum-ratnapura.jpg?h=-1&s=1&w=1100',
+    caption: 'Ratnapura National Museum (Ehelepola Walauwa) — TripAdvisor visitor photo',
+  },
+  'saman-dewalaya-ratnapura': {
+    url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maha_Saman_Devalaya.jpg?width=1400',
+    caption: 'Entrance to Maha Saman Devalaya — L. Manju, CC BY-SA 4.0',
+  },
+  'katugas-ella': {
+    url: 'https://www.sab.ac.lk/med/sites/default/files/resources/images/Attractions/Katugas%20Ella/1.JPG',
+    caption: 'Katugas Ella — Sabaragamuwa University of Sri Lanka',
+  },
+};
+
+const buildDestination = (seed: DestinationSeed, index: number): Destination => {
+  const curatedPhoto = CURATED_DESTINATION_IMAGES[seed.slug];
+  const sinharajaCanopy = seed.slug === 'sinharaja-forest-reserve';
+  const image = curatedPhoto?.url ?? (sinharajaCanopy
+    ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Siharaja_Forest_Canopy_Sri_Lanka.jpg/1280px-Siharaja_Forest_Canopy_Sri_Lanka.jpg'
+    : imageFor(seed.categories));
+  return {
+    ...seed,
+    id: seed.slug,
+    address: `${seed.district} District, ${seed.province} Province`,
+    rating: 4.5 + (index % 5) * 0.1,
+    reviewCount: 260 + index * 67,
+    entranceFee: { notes: 'Check locally for current entry fees and visiting conditions.' },
+    openingHours: { notes: 'Hours can vary by season and public holiday.' },
+    accessibility: 'Access conditions vary; check locally before travelling.',
+    facilities: ['Parking nearby', 'Local food options'],
+    images: [{
+      id: `${seed.slug}-cover`,
+      url: image,
+      caption: curatedPhoto?.caption ?? (sinharajaCanopy ? 'Sinharaja rainforest canopy — Ruwan Illeperuma, CC BY-SA 4.0' : seed.name),
+      order: 1,
+    }],
+    coverImage: image,
+    verified: true,
+    verificationStatus: 'Verified',
+    createdAt: '2025-01-01T00:00:00Z',
+    updatedAt: '2025-01-01T00:00:00Z',
+  };
+};
+
+const EXPANDED_DESTINATION_SEEDS: DestinationSeed[] = [
+  { name: 'Galle Face Green', slug: 'galle-face-green', districtId: 'colombo', district: 'Colombo', province: 'Western', description: 'A breezy oceanfront promenade in the heart of Colombo, especially lively at sunset.', shortDescription: 'Colombo’s classic seaside promenade for sunset walks and street food.', coordinates: { lat: 6.9271, lng: 79.8427 }, categories: ['Beaches', 'Food', 'Sunset', 'Family Friendly'], bestTimeToVisit: 'Late afternoon to sunset', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Gangaramaya Temple', slug: 'gangaramaya-temple', districtId: 'colombo', district: 'Colombo', province: 'Western', description: 'An eclectic Buddhist temple and museum beside Beira Lake, filled with religious and cultural artefacts.', shortDescription: 'A richly detailed temple and museum beside Beira Lake.', coordinates: { lat: 6.9168, lng: 79.8563 }, categories: ['Temples', 'Museums', 'Cultural & Historical'], bestTimeToVisit: 'Morning or late afternoon', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Kelaniya Raja Maha Vihara', slug: 'kelaniya-raja-maha-vihara', districtId: 'gampaha', district: 'Gampaha', province: 'Western', description: 'A revered riverside temple celebrated for its murals, ancient traditions, and annual Duruthu Perahera.', shortDescription: 'Historic riverside temple known for murals and the Duruthu Perahera.', coordinates: { lat: 6.9553, lng: 79.9224 }, categories: ['Temples', 'Cultural & Historical', 'Heritage Sites'], bestTimeToVisit: 'Morning', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Henarathgoda Botanical Garden', slug: 'henarathgoda-botanical-garden', districtId: 'gampaha', district: 'Gampaha', province: 'Western', description: 'A peaceful tropical garden in Gampaha with towering trees, orchids, and a historic rubber tree.', shortDescription: 'Leafy botanical garden with tropical trees and quiet walking paths.', coordinates: { lat: 7.0915, lng: 80.0008 }, categories: ['Forests', 'Photography', 'Family Friendly'], bestTimeToVisit: 'Morning or late afternoon', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Bentota Beach', slug: 'bentota-beach', districtId: 'kalutara', district: 'Kalutara', province: 'Western', description: 'A long sweep of golden beach popular for swimming, watersports, and relaxed coastal stays.', shortDescription: 'Golden-sand beach with calm stretches and watersports.', coordinates: { lat: 6.4211, lng: 79.9959 }, categories: ['Beaches', 'Adventure', 'Romantic'], bestTimeToVisit: 'November to April', estimatedDuration: 'Half day', difficulty: 'Easy' },
+  { name: 'Brief Garden', slug: 'brief-garden', districtId: 'kalutara', district: 'Kalutara', province: 'Western', description: 'Bevis Bawa’s celebrated landscaped garden, blending tropical planting, sculpture, and secluded corners.', shortDescription: 'A characterful tropical garden designed by Bevis Bawa.', coordinates: { lat: 6.4081, lng: 80.0118 }, categories: ['Forests', 'Photography', 'Hidden Gems'], bestTimeToVisit: 'Morning', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Kandy Lake', slug: 'kandy-lake', districtId: 'kandy', district: 'Kandy', province: 'Central', description: 'A peaceful artificial lake beside the Temple of the Tooth, ideal for an easy scenic walk.', shortDescription: 'A tranquil lakeside walk in the heart of Kandy.', coordinates: { lat: 7.2906, lng: 80.6391 }, categories: ['Lakes', 'Photography', 'Family Friendly'], bestTimeToVisit: 'Early morning or sunset', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Bahirawakanda Vihara Buddha Statue', slug: 'bahirawakanda-vihara', districtId: 'kandy', district: 'Kandy', province: 'Central', description: 'A hilltop white Buddha statue overlooking Kandy and its surrounding mountains.', shortDescription: 'Hilltop Buddha statue with wide views over Kandy.', coordinates: { lat: 7.3015, lng: 80.6286 }, categories: ['Temples', 'Viewpoints', 'Photography'], bestTimeToVisit: 'Late afternoon', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Dambulla Cave Temple', slug: 'dambulla-cave-temple', districtId: 'matale', district: 'Matale', province: 'Central', description: 'A UNESCO-listed complex of five cave shrines with centuries of Buddhist paintings and statues.', shortDescription: 'UNESCO cave shrines filled with Buddhist murals and statues.', coordinates: { lat: 7.8567, lng: 80.6492 }, categories: ['Temples', 'Heritage Sites', 'Cultural & Historical'], bestTimeToVisit: 'Morning or late afternoon', estimatedDuration: '2 hours', difficulty: 'Moderate' },
+  { name: 'Pidurangala Rock', slug: 'pidurangala-rock', districtId: 'matale', district: 'Matale', province: 'Central', description: 'A rewarding rocky climb opposite Sigiriya, prized for its sunrise views over Lion Rock.', shortDescription: 'Sunrise climb with a remarkable view of Sigiriya Rock.', coordinates: { lat: 7.9663, lng: 80.7600 }, categories: ['Hiking & Trekking', 'Viewpoints', 'Sunrise', 'Photography'], bestTimeToVisit: 'Sunrise', estimatedDuration: '2 hours', difficulty: 'Moderate' },
+  { name: 'Gregory Lake', slug: 'gregory-lake', districtId: 'nuwara-eliya', district: 'Nuwara Eliya', province: 'Central', description: 'A cool-climate lake in Nuwara Eliya with walking paths, pedal boats, and mountain scenery.', shortDescription: 'Cool-climate lake for gentle walks and boat rides.', coordinates: { lat: 6.9689, lng: 80.7830 }, categories: ['Lakes', 'Family Friendly', 'Photography'], bestTimeToVisit: 'Morning', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Pedro Tea Estate', slug: 'pedro-tea-estate', districtId: 'nuwara-eliya', district: 'Nuwara Eliya', province: 'Central', description: 'A working tea estate where visitors can see the Ceylon tea process and stroll through green fields.', shortDescription: 'Working tea estate with factory tours and green hillside views.', coordinates: { lat: 6.9701, lng: 80.7961 }, categories: ['Tea Estates', 'Photography', 'Family Friendly'], bestTimeToVisit: 'Morning', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Jungle Beach', slug: 'jungle-beach', districtId: 'galle', district: 'Galle', province: 'Southern', description: 'A small sheltered beach near Unawatuna, reached by a scenic road through lush coastal vegetation.', shortDescription: 'Secluded crescent beach near Unawatuna.', coordinates: { lat: 6.0106, lng: 80.2429 }, categories: ['Beaches', 'Hidden Gems', 'Wildlife'], bestTimeToVisit: 'November to April', estimatedDuration: '2-3 hours', difficulty: 'Easy' },
+  { name: 'Unawatuna Beach', slug: 'unawatuna-beach', districtId: 'galle', district: 'Galle', province: 'Southern', description: 'A lively crescent beach with calm water, cafes, and a relaxed holiday atmosphere.', shortDescription: 'Popular crescent beach with calm water and cafes.', coordinates: { lat: 6.0101, lng: 80.2490 }, categories: ['Beaches', 'Food', 'Romantic'], bestTimeToVisit: 'November to April', estimatedDuration: 'Half day', difficulty: 'Easy' },
+  { name: 'Polhena Beach', slug: 'polhena-beach', districtId: 'matara', district: 'Matara', province: 'Southern', description: 'A reef-protected beach known for calm water, turtles, and easy snorkeling close to shore.', shortDescription: 'Calm reef beach where turtles are often spotted.', coordinates: { lat: 5.9378, lng: 80.5394 }, categories: ['Beaches', 'Wildlife', 'Photography'], bestTimeToVisit: 'November to April', estimatedDuration: 'Half day', difficulty: 'Easy' },
+  { name: 'Dondra Head Lighthouse', slug: 'dondra-head-lighthouse', districtId: 'matara', district: 'Matara', province: 'Southern', description: 'Sri Lanka’s southernmost lighthouse, standing above dramatic ocean views at Dondra Head.', shortDescription: 'Historic lighthouse at Sri Lanka’s southern tip.', coordinates: { lat: 5.9221, lng: 80.5977 }, categories: ['Cultural & Historical', 'Viewpoints', 'Photography'], bestTimeToVisit: 'Late afternoon', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Bundala National Park', slug: 'bundala-national-park', districtId: 'hambantota', district: 'Hambantota', province: 'Southern', description: 'A wetland sanctuary of lagoons, dunes, crocodiles, elephants, and migrant birds including flamingos.', shortDescription: 'Wetland safari for birds, lagoons, and seasonal flamingos.', coordinates: { lat: 6.1802, lng: 81.2295 }, categories: ['Wildlife', 'National Parks', 'Photography'], bestTimeToVisit: 'November to March', estimatedDuration: 'Half day', difficulty: 'Easy' },
+  { name: 'Tissamaharama Lake', slug: 'tissamaharama-lake', districtId: 'hambantota', district: 'Hambantota', province: 'Southern', description: 'An ancient reservoir surrounded by rice fields and birdlife near the gateway to Yala.', shortDescription: 'Ancient reservoir with quiet sunset views and birdlife.', coordinates: { lat: 6.2795, lng: 81.2866 }, categories: ['Lakes', 'Wildlife', 'Sunset'], bestTimeToVisit: 'Sunset', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Jaffna Fort', slug: 'jaffna-fort', districtId: 'jaffna', district: 'Jaffna', province: 'Northern', description: 'A large Dutch fort with ocean-facing ramparts and a powerful view into Jaffna’s colonial history.', shortDescription: 'Ocean-facing Dutch fort in the heart of Jaffna.', coordinates: { lat: 9.6616, lng: 80.0145 }, categories: ['Heritage Sites', 'Cultural & Historical', 'Photography'], bestTimeToVisit: 'Late afternoon', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Nallur Kandaswamy Kovil', slug: 'nallur-kandaswamy-kovil', districtId: 'jaffna', district: 'Jaffna', province: 'Northern', description: 'A striking Hindu temple known for its ornate golden gopuram and important annual festival.', shortDescription: 'Landmark Hindu temple with a richly decorated gopuram.', coordinates: { lat: 9.6754, lng: 80.0311 }, categories: ['Temples', 'Cultural & Historical', 'Photography'], bestTimeToVisit: 'Morning or evening', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Iranamadu Tank', slug: 'iranamadu-tank', districtId: 'kilinochchi', district: 'Kilinochchi', province: 'Northern', description: 'A vast reservoir surrounded by open countryside, quiet birdlife, and wide northern skies.', shortDescription: 'Wide reservoir with quiet countryside views.', coordinates: { lat: 9.3786, lng: 80.4294 }, categories: ['Lakes', 'Wildlife', 'Sunset'], bestTimeToVisit: 'Late afternoon', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Elephant Pass', slug: 'elephant-pass', districtId: 'kilinochchi', district: 'Kilinochchi', province: 'Northern', description: 'A narrow historic isthmus between lagoon and sea, important to the geography and history of the north.', shortDescription: 'Historic lagoon crossing at the gateway to Jaffna.', coordinates: { lat: 9.5481, lng: 80.3581 }, categories: ['Cultural & Historical', 'Lakes', 'Photography'], bestTimeToVisit: 'Morning or sunset', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Mannar Fort', slug: 'mannar-fort', districtId: 'mannar', district: 'Mannar', province: 'Northern', description: 'A compact Portuguese and Dutch-era fort overlooking Mannar’s harbour and bridge.', shortDescription: 'Colonial fort overlooking Mannar harbour.', coordinates: { lat: 8.9812, lng: 79.9040 }, categories: ['Heritage Sites', 'Cultural & Historical', 'Photography'], bestTimeToVisit: 'Late afternoon', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Talaimannar Beach', slug: 'talaimannar-beach', districtId: 'mannar', district: 'Mannar', province: 'Northern', description: 'A windswept northern beach with shallow water, sea views, and a wonderfully remote feel.', shortDescription: 'Remote northern beach with wide-open sea views.', coordinates: { lat: 9.0962, lng: 79.7308 }, categories: ['Beaches', 'Sunset', 'Photography'], bestTimeToVisit: 'Late afternoon', estimatedDuration: '2 hours', difficulty: 'Easy' },
+  { name: 'Mullaitivu Beach', slug: 'mullaitivu-beach', districtId: 'mullaitivu', district: 'Mullaitivu', province: 'Northern', description: 'A broad, quiet beach on Sri Lanka’s northeastern coastline, ideal for a slow scenic stop.', shortDescription: 'Quiet east-coast beach with a remote, undeveloped feel.', coordinates: { lat: 9.2678, lng: 80.8141 }, categories: ['Beaches', 'Photography', 'Sunrise'], bestTimeToVisit: 'May to September', estimatedDuration: '2-3 hours', difficulty: 'Easy' },
+  { name: 'Kokkilai Lagoon', slug: 'kokkilai-lagoon', districtId: 'mullaitivu', district: 'Mullaitivu', province: 'Northern', description: 'A tranquil lagoon and wetland system shared with rich birdlife along the northeastern coast.', shortDescription: 'Peaceful lagoon wetland with birdlife and open skies.', coordinates: { lat: 9.2491, lng: 80.9230 }, categories: ['Lakes', 'Wildlife', 'Photography'], bestTimeToVisit: 'Early morning', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Vavuniya Archaeological Museum', slug: 'vavuniya-archaeological-museum', districtId: 'vavuniya', district: 'Vavuniya', province: 'Northern', description: 'A small local museum introducing the archaeological and cultural story of the Vavuniya region.', shortDescription: 'Local museum with archaeological and cultural displays.', coordinates: { lat: 8.7518, lng: 80.4985 }, categories: ['Museums', 'Cultural & Historical'], bestTimeToVisit: 'Morning', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Madukanda Vihara', slug: 'madukanda-vihara', districtId: 'vavuniya', district: 'Vavuniya', province: 'Northern', description: 'An ancient Buddhist temple complex surrounded by the quiet rural landscape of northern Sri Lanka.', shortDescription: 'Ancient temple complex in quiet northern countryside.', coordinates: { lat: 8.8419, lng: 80.5272 }, categories: ['Temples', 'Heritage Sites', 'Cultural & Historical'], bestTimeToVisit: 'Morning', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Pigeon Island National Park', slug: 'pigeon-island-national-park', districtId: 'trincomalee', district: 'Trincomalee', province: 'Eastern', description: 'A tiny offshore marine park with coral reefs, clear water, and excellent seasonal snorkeling.', shortDescription: 'Offshore marine park for coral reef snorkeling.', coordinates: { lat: 8.7207, lng: 81.1937 }, categories: ['Beaches', 'Wildlife', 'Adventure', 'Photography'], bestTimeToVisit: 'May to September', estimatedDuration: 'Half day', difficulty: 'Easy' },
+  { name: 'Koneswaram Temple', slug: 'koneswaram-temple', districtId: 'trincomalee', district: 'Trincomalee', province: 'Eastern', description: 'A dramatic Hindu temple perched on Swami Rock above Trincomalee’s deep natural harbour.', shortDescription: 'Clifftop Hindu temple above Trincomalee harbour.', coordinates: { lat: 8.5687, lng: 81.2437 }, categories: ['Temples', 'Viewpoints', 'Cultural & Historical'], bestTimeToVisit: 'Morning or sunset', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Kallady Bridge', slug: 'kallady-bridge', districtId: 'batticaloa', district: 'Batticaloa', province: 'Eastern', description: 'An iconic bridge across Batticaloa Lagoon, best known for its evening light and lagoon views.', shortDescription: 'Iconic lagoon bridge with tranquil evening views.', coordinates: { lat: 7.7104, lng: 81.7008 }, categories: ['Lakes', 'Photography', 'Sunset'], bestTimeToVisit: 'Sunset', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Kallady Beach', slug: 'kallady-beach', districtId: 'batticaloa', district: 'Batticaloa', province: 'Eastern', description: 'A long sandy beach close to town, ideal for a quiet sunrise or an evening sea breeze.', shortDescription: 'Long city beach for a calm sunrise or evening stroll.', coordinates: { lat: 7.7090, lng: 81.7330 }, categories: ['Beaches', 'Sunrise', 'Photography'], bestTimeToVisit: 'May to September', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Gal Oya National Park', slug: 'gal-oya-national-park', districtId: 'ampara', district: 'Ampara', province: 'Eastern', description: 'A wild national park where jeep and boat safaris can reveal elephants swimming between islands.', shortDescription: 'Wildlife park known for boat safaris and swimming elephants.', coordinates: { lat: 7.2149, lng: 81.3491 }, categories: ['Wildlife', 'National Parks', 'Adventure'], bestTimeToVisit: 'June to September', estimatedDuration: 'Full day', difficulty: 'Easy' },
+  { name: 'Lahugala Kitulana National Park', slug: 'lahugala-kitulana-national-park', districtId: 'ampara', district: 'Ampara', province: 'Eastern', description: 'A compact wildlife park with reservoirs, grasslands, and seasonal elephant gatherings.', shortDescription: 'Compact elephant habitat of reservoirs and grassland.', coordinates: { lat: 6.8883, lng: 81.6783 }, categories: ['Wildlife', 'National Parks', 'Photography'], bestTimeToVisit: 'July to September', estimatedDuration: 'Half day', difficulty: 'Easy' },
+  { name: 'Yapahuwa Rock Fortress', slug: 'yapahuwa-rock-fortress', districtId: 'kurunegala', district: 'Kurunegala', province: 'North Western', description: 'A 13th-century rock citadel with a monumental stairway and wide views across the plains.', shortDescription: 'Ancient rock citadel with a grand stone stairway.', coordinates: { lat: 7.8176, lng: 80.3102 }, categories: ['Heritage Sites', 'Cultural & Historical', 'Hiking & Trekking'], bestTimeToVisit: 'Morning', estimatedDuration: '2 hours', difficulty: 'Moderate' },
+  { name: 'Ridi Vihara', slug: 'ridi-vihara', districtId: 'kurunegala', district: 'Kurunegala', province: 'North Western', description: 'A historic cave temple with intricate carvings and murals near the village of Ridigama.', shortDescription: 'Historic cave temple with carvings and painted shrines.', coordinates: { lat: 7.5660, lng: 80.2502 }, categories: ['Temples', 'Heritage Sites', 'Cultural & Historical'], bestTimeToVisit: 'Morning', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Wilpattu National Park', slug: 'wilpattu-national-park', districtId: 'puttalam', district: 'Puttalam', province: 'North Western', description: 'Sri Lanka’s largest national park, famous for its natural lakes, leopards, sloth bears, and quiet safaris.', shortDescription: 'Sri Lanka’s largest park for leopard and lake safaris.', coordinates: { lat: 8.4540, lng: 80.0376 }, categories: ['Wildlife', 'National Parks', 'Adventure'], bestTimeToVisit: 'February to October', estimatedDuration: 'Full day', difficulty: 'Easy' },
+  { name: 'Kalpitiya Lagoon', slug: 'kalpitiya-lagoon', districtId: 'puttalam', district: 'Puttalam', province: 'North Western', description: 'A breezy lagoon landscape known for kiteboarding, dolphin cruises, and saltwater sunsets.', shortDescription: 'Windy lagoon hub for kitesurfing and dolphin trips.', coordinates: { lat: 8.2340, lng: 79.7684 }, categories: ['Adventure', 'Wildlife', 'Sunset'], bestTimeToVisit: 'May to October', estimatedDuration: 'Half day', difficulty: 'Easy' },
+  { name: 'Ruwanwelisaya', slug: 'ruwanwelisaya', districtId: 'anuradhapura', district: 'Anuradhapura', province: 'North Central', description: 'One of Sri Lanka’s greatest stupas, glowing white at the heart of the ancient sacred city.', shortDescription: 'Magnificent white stupa in Anuradhapura’s sacred city.', coordinates: { lat: 8.3500, lng: 80.3963 }, categories: ['Temples', 'Heritage Sites', 'Cultural & Historical'], bestTimeToVisit: 'Early morning or evening', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Jethawanaramaya', slug: 'jethawanaramaya', districtId: 'anuradhapura', district: 'Anuradhapura', province: 'North Central', description: 'An immense ancient brick stupa that once ranked among the tallest structures in the world.', shortDescription: 'Vast ancient brick stupa in the sacred city.', coordinates: { lat: 8.3562, lng: 80.4047 }, categories: ['Temples', 'Heritage Sites', 'Cultural & Historical'], bestTimeToVisit: 'Early morning', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Gal Vihara', slug: 'gal-vihara', districtId: 'polonnaruwa', district: 'Polonnaruwa', province: 'North Central', description: 'A revered group of giant Buddha images carved directly into a granite wall in medieval Polonnaruwa.', shortDescription: 'Exceptional rock-cut Buddha statues in Polonnaruwa.', coordinates: { lat: 7.9609, lng: 81.0014 }, categories: ['Temples', 'Heritage Sites', 'Cultural & Historical'], bestTimeToVisit: 'Morning', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Medirigiriya Vatadage', slug: 'medirigiriya-vatadage', districtId: 'polonnaruwa', district: 'Polonnaruwa', province: 'North Central', description: 'A beautifully preserved circular shrine house with moonstones, guardstones, and carved Buddha images.', shortDescription: 'Graceful circular shrine with finely carved stonework.', coordinates: { lat: 7.9621, lng: 80.9397 }, categories: ['Temples', 'Heritage Sites', 'Cultural & Historical'], bestTimeToVisit: 'Morning', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Ravana Falls', slug: 'ravana-falls', districtId: 'badulla', district: 'Badulla', province: 'Uva', description: 'A broad roadside waterfall cascading through forest just outside Ella, especially powerful after rain.', shortDescription: 'Popular roadside waterfall near Ella.', coordinates: { lat: 6.8404, lng: 81.0602 }, categories: ['Waterfalls', 'Photography', 'Family Friendly'], bestTimeToVisit: 'Morning', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Little Adam’s Peak', slug: 'little-adams-peak', districtId: 'badulla', district: 'Badulla', province: 'Uva', description: 'An accessible ridge walk through tea fields with a rewarding view of the Ella Gap.', shortDescription: 'Easy ridge hike with Ella Gap views.', coordinates: { lat: 6.8662, lng: 81.0467 }, categories: ['Hiking & Trekking', 'Mountains', 'Sunrise', 'Photography'], bestTimeToVisit: 'Sunrise or sunset', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Maligawila Buddha Statue', slug: 'maligawila-buddha-statue', districtId: 'monaragala', district: 'Monaragala', province: 'Uva', description: 'A towering standing Buddha carved from a single limestone block, set in a tranquil forested clearing.', shortDescription: 'Ancient monolithic Buddha statue in a quiet clearing.', coordinates: { lat: 6.7631, lng: 81.4204 }, categories: ['Temples', 'Heritage Sites', 'Cultural & Historical'], bestTimeToVisit: 'Morning', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Buduruwagala Temple', slug: 'buduruwagala-temple', districtId: 'monaragala', district: 'Monaragala', province: 'Uva', description: 'A forest temple with seven enormous Buddhist figures carved into a rock face.', shortDescription: 'Giant rock-carved Buddhist figures in forest.', coordinates: { lat: 6.7134, lng: 81.3274 }, categories: ['Temples', 'Heritage Sites', 'Cultural & Historical'], bestTimeToVisit: 'Morning', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Sinharaja Forest Reserve', slug: 'sinharaja-forest-reserve', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A UNESCO rainforest reserve with dense green trails, waterfalls, and exceptional endemic birdlife.', shortDescription: 'UNESCO rainforest for lush trails and endemic wildlife.', coordinates: { lat: 6.4052, lng: 80.4681 }, categories: ['Forests', 'Wildlife', 'Hiking & Trekking', 'Waterfalls'], bestTimeToVisit: 'January to April', estimatedDuration: 'Half to full day', difficulty: 'Moderate' },
+  { name: 'Bopath Ella Falls', slug: 'bopath-ella-falls', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A photogenic waterfall shaped like a Bo leaf, falling through lush forest near Kuruwita.', shortDescription: 'Leaf-shaped waterfall in lush forest.', coordinates: { lat: 6.7892, lng: 80.3677 }, categories: ['Waterfalls', 'Photography', 'Family Friendly'], bestTimeToVisit: 'Morning', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Ratnapura National Museum', slug: 'ratnapura-national-museum', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'Regional museum in the historic Ehelepola Walauwa, with collections covering the archaeology, natural history, geology, and culture of Sabaragamuwa.', shortDescription: 'Explore regional history, archaeology, natural history, and gem-country heritage.', coordinates: { lat: 6.6844, lng: 80.3996 }, categories: ['Museums', 'Cultural & Historical', 'Heritage Sites'], bestTimeToVisit: 'Weekday morning', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Saman Dewalaya', slug: 'saman-dewalaya-ratnapura', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A historic shrine dedicated to Saman, set beside the Kalu Ganga on the outskirts of Ratnapura.', shortDescription: 'Historic Sabaragamuwa shrine dedicated to the guardian deity Saman.', coordinates: { lat: 6.6911, lng: 80.3810 }, categories: ['Temples', 'Cultural & Historical', 'Heritage Sites'], bestTimeToVisit: 'Morning or evening', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Katugas Ella', slug: 'katugas-ella', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A small cascade on Katugas Dola near Ratnapura, reached by a short walk along the stream.', shortDescription: 'A quiet forest waterfall near Ratnapura town.', coordinates: { lat: 6.7047, lng: 80.4275 }, categories: ['Waterfalls', 'Hidden Gems', 'Photography'], bestTimeToVisit: 'After the rains', estimatedDuration: '1 hour', difficulty: 'Moderate' },
+  { name: 'Rajanawa Ella', slug: 'rajanawa-ella', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A waterfall near the Ratnapura–Kalawana road, known for its cascade and surrounding rock pools.', shortDescription: 'Roadside waterfall near Ratnapura with a scenic rocky setting.', coordinates: { lat: 6.6510, lng: 80.4450 }, categories: ['Waterfalls', 'Photography', 'Hidden Gems'], bestTimeToVisit: 'Morning', estimatedDuration: '1 hour', difficulty: 'Moderate' },
+  { name: 'Suudagala Ella', slug: 'suudagala-ella', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A waterfall destination in the Ratnapura district, surrounded by the green landscapes of Sabaragamuwa.', shortDescription: 'A lesser-known waterfall in Ratnapura district.', coordinates: { lat: 6.8100, lng: 80.3800 }, categories: ['Waterfalls', 'Hidden Gems', 'Photography'], bestTimeToVisit: 'After the rains', estimatedDuration: '1-2 hours', difficulty: 'Moderate' },
+  { name: 'Mapalana Ella', slug: 'mapalana-ella', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A multi-tier waterfall in the Mapalana area below the Sri Pada range, formed by the Elle Oya stream.', shortDescription: 'Remote multi-tier waterfall near the Sri Pada range.', coordinates: { lat: 6.7750, lng: 80.4618 }, categories: ['Waterfalls', 'Hiking & Trekking', 'Photography'], bestTimeToVisit: 'After the rains', estimatedDuration: '2-3 hours', difficulty: 'Difficult' },
+  { name: 'Sri Pada Wilderness Sanctuary', slug: 'sri-pada-wilderness-sanctuary', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A protected forest landscape surrounding Sri Pada, with rich biodiversity, steep mountain terrain, and important headwaters.', shortDescription: 'Protected montane rainforest around the sacred Sri Pada mountain.', coordinates: { lat: 6.8096, lng: 80.4994 }, categories: ['National Parks', 'Forests', 'Wildlife', 'Hiking & Trekking'], bestTimeToVisit: 'December to May', estimatedDuration: 'Half to full day', difficulty: 'Difficult' },
+  { name: 'Batadombalena', slug: 'batadombalena', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A prehistoric cave site near Kuruwita, noted for archaeological evidence of early human habitation in Sri Lanka.', shortDescription: 'Important prehistoric cave and archaeological site near Kuruwita.', coordinates: { lat: 6.7766, lng: 80.3962 }, categories: ['Caves', 'Heritage Sites', 'Hiking & Trekking'], bestTimeToVisit: 'Morning', estimatedDuration: '2-3 hours', difficulty: 'Moderate' },
+  { name: 'Kiribathgala Mountain', slug: 'kiribathgala-mountain', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A forested mountain near Pelmadulla with a long ridge and views across the surrounding highlands.', shortDescription: 'A hiking and viewpoint mountain in the Pelmadulla area.', coordinates: { lat: 6.6123, lng: 80.5074 }, categories: ['Mountains', 'Hiking & Trekking', 'Viewpoints', 'Adventure'], bestTimeToVisit: 'February', estimatedDuration: 'Half day', difficulty: 'Difficult' },
+  { name: 'Kudawa Natural Pool', slug: 'kudawa-natural-pool', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A natural pool and waterfall reached through the forest near Kudawa and the Sinharaja reserve.', shortDescription: 'Forest pool and waterfall near Kudawa.', coordinates: { lat: 6.4442, lng: 80.4156 }, categories: ['Waterfalls', 'Rivers', 'Forests', 'Adventure'], bestTimeToVisit: 'January to April', estimatedDuration: '2-3 hours', difficulty: 'Moderate' },
+  { name: 'Ganegama Rajamaha Viharaya', slug: 'ganegama-rajamaha-viharaya', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'An ancient temple near Pelmadulla, surrounded by paddy fields and known for its historic Bodhi tree and carved stonework.', shortDescription: 'Historic Pelmadulla temple with traditional stone carvings.', coordinates: { lat: 6.6345, lng: 80.5228 }, categories: ['Temples', 'Cultural & Historical', 'Heritage Sites'], bestTimeToVisit: 'Morning', estimatedDuration: '1 hour', difficulty: 'Easy' },
+  { name: 'Kuragala Ancient Buddhist Monastery', slug: 'kuragala-ancient-buddhist-monastery', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A historic cave monastery and archaeological site on a rocky outcrop near Balangoda, with ancient caves and religious remains.', shortDescription: 'Ancient cave monastery and archaeological site near Balangoda.', coordinates: { lat: 6.6290, lng: 80.8644 }, categories: ['Temples', 'Caves', 'Heritage Sites', 'Hiking & Trekking'], bestTimeToVisit: 'Morning', estimatedDuration: '2-3 hours', difficulty: 'Moderate' },
+  { name: 'Belihul Oya', slug: 'belihul-oya', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A scenic river and highland village surrounded by waterfalls, reservoirs, and mountain landscapes.', shortDescription: 'Riverside highland area and gateway to nearby waterfalls.', coordinates: { lat: 6.7180, lng: 80.7890 }, categories: ['Rivers', 'Waterfalls', 'Adventure', 'Hidden Gems'], bestTimeToVisit: 'January to April', estimatedDuration: 'Half day', difficulty: 'Easy' },
+  { name: 'Samanala Wewa', slug: 'samanala-wewa', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A large reservoir in the hills near Belihul Oya, framed by open water and mountain scenery.', shortDescription: 'A highland reservoir with broad water and mountain views.', coordinates: { lat: 6.7500, lng: 80.7700 }, categories: ['Lakes', 'Viewpoints', 'Photography', 'Hidden Gems'], bestTimeToVisit: 'Early morning or sunset', estimatedDuration: '1-2 hours', difficulty: 'Easy' },
+  { name: 'Pahanthudawa Falls', slug: 'pahanthudawa-falls', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A narrow waterfall near Belihul Oya, where the stream drops into a deep rock pool.', shortDescription: 'A distinctive waterfall and gorge near Belihul Oya.', coordinates: { lat: 6.7185, lng: 80.7830 }, categories: ['Waterfalls', 'Hidden Gems', 'Photography'], bestTimeToVisit: 'January to April', estimatedDuration: '1-2 hours', difficulty: 'Moderate' },
+  { name: 'Lipton Seat', slug: 'lipton-seat', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A celebrated hill-country viewpoint above tea country, with panoramic views across the surrounding highlands.', shortDescription: 'Panoramic viewpoint above the tea estates.', coordinates: { lat: 6.7665, lng: 80.9500 }, categories: ['Viewpoints', 'Tea Estates', 'Hiking & Trekking', 'Photography'], bestTimeToVisit: 'Early morning', estimatedDuration: '2-3 hours', difficulty: 'Moderate' },
+  { name: 'Duwili Ella', slug: 'duwili-ella-kudawa', districtId: 'ratnapura', district: 'Ratnapura', province: 'Sabaragamuwa', description: 'A waterfall in the Kudawa area, set amid the forested landscape of Ratnapura district.', shortDescription: 'A forest waterfall near Kudawa.', coordinates: { lat: 6.4394, lng: 80.4082 }, categories: ['Waterfalls', 'Forests', 'Hiking & Trekking', 'Photography'], bestTimeToVisit: 'After the rains', estimatedDuration: '2-3 hours', difficulty: 'Moderate' },
+  { name: 'Belilena Cave', slug: 'belilena-cave', districtId: 'kegalle', district: 'Kegalle', province: 'Sabaragamuwa', description: 'A prehistoric cave near Kitulgala where evidence of Sri Lanka’s earliest human inhabitants was found.', shortDescription: 'Prehistoric cave with important archaeological finds.', coordinates: { lat: 7.0517, lng: 80.5132 }, categories: ['Caves', 'Heritage Sites', 'Hiking & Trekking'], bestTimeToVisit: 'Morning', estimatedDuration: '2 hours', difficulty: 'Moderate' },
+  { name: 'Kitulgala Rainforest', slug: 'kitulgala-rainforest', districtId: 'kegalle', district: 'Kegalle', province: 'Sabaragamuwa', description: 'A lush Kelani River valley famous for white-water rafting, rainforest walks, and birdlife.', shortDescription: 'Rainforest river valley for rafting and nature walks.', coordinates: { lat: 6.9907, lng: 80.4185 }, categories: ['Adventure', 'Forests', 'Rivers', 'Wildlife'], bestTimeToVisit: 'December to April', estimatedDuration: 'Half to full day', difficulty: 'Moderate' },
+];
+
+DESTINATIONS.push(...EXPANDED_DESTINATION_SEEDS.map(buildDestination));
 
 export const getDestinationBySlug = (slug: string): Destination | undefined =>
   DESTINATIONS.find((d) => d.slug === slug);

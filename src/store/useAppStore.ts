@@ -24,12 +24,15 @@ interface AppState {
 
   // Favorites (local state, syncs with server when auth available)
   favorites: string[]; // destination IDs
+  setFavorites: (destinationIds: string[]) => void;
   addFavorite: (destinationId: string) => void;
   removeFavorite: (destinationId: string) => void;
   isFavorite: (destinationId: string) => boolean;
 
   // Active Trip (currently planning)
   activeTripDestinations: Destination[];
+  tripDayAssignments: Record<string, number>;
+  setTripDay: (destinationId: string, day: number) => void;
   addToTrip: (destination: Destination) => void;
   removeFromTrip: (destinationId: string) => void;
   clearTrip: () => void;
@@ -71,6 +74,7 @@ export const useAppStore = create<AppState>()(
 
       // Favorites
       favorites: [],
+      setFavorites: (destinationIds) => set({ favorites: [...new Set(destinationIds)] }),
       addFavorite: (destinationId) =>
         set((state) => ({
           favorites: state.favorites.includes(destinationId)
@@ -85,6 +89,8 @@ export const useAppStore = create<AppState>()(
 
       // Trip
       activeTripDestinations: [],
+      tripDayAssignments: {},
+      setTripDay: (destinationId, day) => set((state) => ({ tripDayAssignments: { ...state.tripDayAssignments, [destinationId]: day } })),
       addToTrip: (destination) =>
         set((state) => ({
           activeTripDestinations: state.activeTripDestinations.some(
@@ -98,8 +104,9 @@ export const useAppStore = create<AppState>()(
           activeTripDestinations: state.activeTripDestinations.filter(
             (d) => d.id !== destinationId
           ),
+        tripDayAssignments: Object.fromEntries(Object.entries(state.tripDayAssignments).filter(([id]) => id !== destinationId)),
         })),
-      clearTrip: () => set({ activeTripDestinations: [] }),
+      clearTrip: () => set({ activeTripDestinations: [], tripDayAssignments: {} }),
       isInTrip: (destinationId) =>
         get().activeTripDestinations.some((d) => d.id === destinationId),
 
@@ -126,6 +133,7 @@ export const useAppStore = create<AppState>()(
       partialize: (state) => ({
         favorites: state.favorites,
         activeTripDestinations: state.activeTripDestinations,
+        tripDayAssignments: state.tripDayAssignments,
         language: state.language,
         currency: state.currency,
       }),

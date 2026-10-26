@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import {
   MapPin, Clock, Calendar, ShieldCheck, Heart, BookmarkPlus,
@@ -8,8 +8,8 @@ import {
 import { getDestinationBySlug, DESTINATIONS } from '@/data/destinations';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
+import { DestinationPhoto } from '@/components/destination/DestinationPhoto';
 import { Rating } from '@/components/ui/Rating';
-import { Modal } from '@/components/ui/Modal';
 import { useAppStore } from '@/store/useAppStore';
 import { useGeolocation } from '@/hooks/useGeolocation';
 import {
@@ -21,6 +21,15 @@ import {
   cn
 } from '@/lib/utils';
 import toast from 'react-hot-toast';
+import { useAuth } from '@/lib/auth';
+import { isSupabaseDataConfigured, supabaseData } from '@/lib/supabaseData';
+
+interface DestinationReview {
+  id: string;
+  rating: number;
+  comment: string;
+  created_at: string;
+}
 
 export function DestinationDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -32,10 +41,46 @@ export function DestinationDetailPage() {
     addToTrip, isInTrip, userLocation
   } = useAppStore();
 
-  const { requestLocation, hasLocation } = useGeolocation();
+  const { requestLocation } = useGeolocation();
+  const { user } = useAuth();
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [reviews, setReviews] = useState<DestinationReview[]>([]);
+  const [reviewRating, setReviewRating] = useState(5);
+  const [reviewComment, setReviewComment] = useState('');
+  const [reviewLoading, setReviewLoading] = useState(false);
+
+  useEffect(() => {
+    if (!destination || !isSupabaseDataConfigured) return;
+    void supabaseData<DestinationReview[]>('reviews', {
+      query: `destination_id=eq.${encodeURIComponent(destination.id)}&status=eq.published&select=id,rating,comment,created_at&order=created_at.desc`,
+    }).then(setReviews).catch(() => setReviews([]));
+  }, [destination]);
+
+  const submitReview = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!destination) return;
+    if (!user) {
+      toast.error('Sign in to submit a review.');
+      navigate('/login');
+      return;
+    }
+    setReviewLoading(true);
+    try {
+      await supabaseData('reviews', {
+        method: 'POST',
+        query: 'select=id',
+        prefer: 'return=minimal',
+        body: { user_id: user.id, destination_id: destination.id, rating: reviewRating, comment: reviewComment.trim(), status: 'pending' },
+      });
+      setReviewComment('');
+      toast.success('Review submitted for moderation.');
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Could not submit your review.');
+    } finally {
+      setReviewLoading(false);
+    }
+  };
 
   if (!destination) {
     return (
@@ -83,6 +128,7 @@ export function DestinationDetailPage() {
           text: destination.shortDescription,
           url: window.location.href,
         })
+        .then(() => toast.success(`Shared ${destination.name}`))
         .catch(() => {});
     } else {
       navigator.clipboard.writeText(window.location.href);
@@ -115,7 +161,7 @@ export function DestinationDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="min-h-screen bg-gradient-to-br from-sand-50 via-white to-primary-50 pb-20">
       {/* Breadcrumb Header */}
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
@@ -224,10 +270,12 @@ export function DestinationDetailPage() {
         {/* Gallery Section */}
         <div className="mb-10">
           <div className="relative rounded-3xl overflow-hidden shadow-lg h-80 sm:h-[450px] lg:h-[500px] bg-gray-900">
-            <img
-              src={destination.images[activeImageIndex]?.url || destination.coverImage}
-              alt={destination.images[activeImageIndex]?.caption || destination.name}
-              className="w-full h-full object-cover transition-all duration-300"
+            <DestinationPhoto
+              destination={destination}
+              fallbackSrc={destination.images[activeImageIndex]?.url || destination.coverImage}
+              resolve={activeImageIndex === 0}
+              className="h-full w-full transition-all duration-300"
+              loading="eager"
             />
             {destination.images[activeImageIndex]?.caption && (
               <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-xl">
@@ -341,6 +389,23 @@ export function DestinationDetailPage() {
             )}
 
             {/* Nearby Highlights */}
+            <section className="rounded-3xl border border-gray-100 bg-white p-6 shadow-card sm:p-8">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div><h2 className="text-xl font-bold text-gray-900">Traveler reviews</h2><p className="mt-1 text-sm text-gray-500">Reviews are checked before they appear publicly.</p></div>
+                <span className="rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold text-primary-800">{reviews.length} published</span>
+              </div>
+              <div className="mt-3"><Link to={`/contribute?destination=${destination.id}`} className="text-sm font-semibold text-primary-700 hover:underline">Report incorrect details or suggest an update</Link></div>
+              {!isSupabaseDataConfigured ? <p className="mt-5 rounded-xl bg-sand-50 p-4 text-sm text-gray-600">Reviews will be available after Supabase is configured and migration 002 is applied.</p> : <>
+                <form onSubmit={(event) => void submitReview(event)} className="mt-5 space-y-3 rounded-2xl bg-sand-50 p-4">
+                  <div className="flex flex-wrap items-center justify-between gap-3"><label htmlFor="review-rating" className="text-sm font-semibold text-gray-800">Your rating</label><select id="review-rating" value={reviewRating} onChange={(event) => setReviewRating(Number(event.target.value))} className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm">{[5,4,3,2,1].map((rating) => <option key={rating} value={rating}>{rating} stars</option>)}</select></div>
+                  <textarea required minLength={10} maxLength={2000} value={reviewComment} onChange={(event) => setReviewComment(event.target.value)} placeholder="Share useful details about your visit…" className="min-h-24 w-full rounded-xl border border-gray-200 bg-white p-3 text-sm outline-none focus:border-primary-400 focus:ring-2 focus:ring-primary-100" />
+                  <Button type="submit" variant="primary" size="sm" isLoading={reviewLoading}>Submit review</Button>
+                </form>
+                <div className="mt-5 space-y-3">{reviews.length ? reviews.map((review) => <article key={review.id} className="border-b border-gray-100 pb-3 last:border-0"><div className="flex items-center justify-between gap-3"><p className="font-semibold text-amber-600">{'★'.repeat(review.rating)}<span className="text-gray-300">{'★'.repeat(5-review.rating)}</span></p><time className="text-xs text-gray-400">{new Date(review.created_at).toLocaleDateString()}</time></div><p className="mt-1 text-sm leading-6 text-gray-700">{review.comment}</p></article>) : <p className="text-sm text-gray-500">No published reviews yet. Be the first to share your experience.</p>}</div>
+              </>}
+            </section>
+
+            {/* Nearby Highlights */}
             {nearbyPlaces.length > 0 && (
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -359,7 +424,7 @@ export function DestinationDetailPage() {
                       to={`/destination/${np.slug}`}
                       className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all"
                     >
-                      <img src={np.coverImage} alt={np.name} className="h-32 w-full object-cover group-hover:scale-105 transition-transform" />
+                      <DestinationPhoto destination={np} className="h-32 w-full transition-transform group-hover:scale-105" />
                       <div className="p-3">
                         <p className="font-semibold text-sm text-gray-900 truncate">{np.name}</p>
                         <p className="text-xs text-gray-400 mt-0.5">{np.district}</p>

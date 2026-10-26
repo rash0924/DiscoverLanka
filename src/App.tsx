@@ -14,6 +14,10 @@ import { CategoryDetailPage } from './pages/CategoryDetailPage';
 import { HiddenGemsPage } from './pages/HiddenGemsPage';
 import { SearchPage } from './pages/SearchPage';
 import { SafetyPage } from './pages/SafetyPage';
+import { AuthProvider } from './lib/auth';
+import { AuthPage } from './pages/AuthPage';
+import { AdminPage } from './pages/AdminPage';
+import { ContributePage } from './pages/ContributePage';
 
 const router = createBrowserRouter([
   {
@@ -34,12 +38,16 @@ const router = createBrowserRouter([
       { path: 'hidden-gems', element: <HiddenGemsPage /> },
       { path: 'search', element: <SearchPage /> },
       { path: 'safety', element: <SafetyPage /> },
+      { path: 'contribute', element: <ContributePage /> },
+      { path: 'login', element: <AuthPage role="user" /> },
+      { path: 'admin/login', element: <AuthPage role="admin" /> },
+      { path: 'admin', element: <AdminPage /> },
     ],
   },
-]);
+], { basename: import.meta.env.BASE_URL });
 
 export function App() {
-  return <RouterProvider router={router} />;
+  return <AuthProvider><RouterProvider router={router} /></AuthProvider>;
 }
 
 export default App;

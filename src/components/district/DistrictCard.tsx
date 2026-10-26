@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { MapPin, ChevronRight } from 'lucide-react';
 import type { District } from '@/types';
 import { cn, PROVINCE_COLORS } from '@/lib/utils';
+import { getDestinationsByDistrict } from '@/data/destinations';
 
 interface DistrictCardProps {
   district: District;
@@ -10,12 +11,13 @@ interface DistrictCardProps {
 
 export function DistrictCard({ district, className }: DistrictCardProps) {
   const provinceColor = PROVINCE_COLORS[district.province] || 'bg-gray-100 text-gray-700';
+  const destinationCount = getDestinationsByDistrict(district.id).length;
 
   return (
     <Link
       to={`/district/${district.slug}`}
       className={cn(
-        'group block bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1',
+        'group block bg-white rounded-3xl overflow-hidden border border-primary-100/80 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1.5',
         className
       )}
     >
@@ -39,7 +41,7 @@ export function DistrictCard({ district, className }: DistrictCardProps) {
         {/* Destination count */}
         <div className="absolute bottom-3 right-3">
           <span className="text-xs font-medium px-2 py-1 rounded-full bg-white/20 text-white backdrop-blur-sm">
-            {district.destinationCount} places
+            {destinationCount} places
           </span>
         </div>
 
@@ -50,7 +52,7 @@ export function DistrictCard({ district, className }: DistrictCardProps) {
       </div>
 
       {/* Content */}
-      <div className="p-4">
+      <div className="bg-gradient-to-b from-white to-primary-50/60 p-4">
         <p className="text-sm text-gray-500 line-clamp-2 mb-3">{district.description}</p>
 
         {/* Popular destinations */}

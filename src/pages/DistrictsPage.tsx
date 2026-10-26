@@ -12,7 +12,7 @@ export function DistrictsPage() {
       : DISTRICTS.filter((d) => d.province === activeProvince);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-sand-50 via-white to-primary-50">
       {/* Header */}
       <div className="bg-gradient-to-br from-primary-900 to-ocean-900 py-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
